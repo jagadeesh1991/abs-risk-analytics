@@ -122,6 +122,41 @@ five-tranche floating stack. Class-specific (trustee-report style):
 - **Current LTV** — HPI-adjusted equity positions.
 - **Vector Analysis** — WAL per tranche across 4–25% CPR.
 
+### CLO Management
+The multi-deal surveillance desk: an eight-deal shelf (2021–2026 vintages,
+each priced at its era's AAA spread and carrying realistic credit migration)
+managed the way an institutional CLO platform is.
+
+**Platform section**
+- **KPIs** — AUM, deals in reinvestment, deals failing tests, par-weighted
+  WARF/WAS, platform CCC exposure, total equity NAV.
+- **Deal Board** — one row per deal: lifecycle stage (Ramp-Up →
+  Reinvestment → Amortization), collateral par, WARF/WAS/CCC, junior OC
+  cushion and a PASS / *n* FAIL compliance chip.
+- **Junior OC Cushion by Deal** — headroom on the test that binds first.
+- **Risk vs Carry** — WARF × WAS scatter, bubble = par.
+- **Platform industry / rating exposure** and **Cross-Deal Obligor
+  Overlap** — single names held in 3+ deals (how idiosyncratic risk
+  compounds across a shelf).
+- **Equity Cash-on-Cash (LTM)** per deal.
+
+**Deal Surveillance section** (pick a deal)
+- **Capital Structure & Coverage** — current balances after amortization,
+  per-class OC actual vs trigger.
+- **Compliance Report** — every indenture test grouped Coverage (OC/IC per
+  class) / Quality (WARF, WAS, diversity, CCC) / Concentration (single
+  obligor, single industry, defaulted obligations) with requirement, actual,
+  cushion and status. STRATA CLO 2021-2 ships failing five tests — including
+  its Class E OC at 1.035x vs a 1.045x trigger — so the workflow is visible.
+- **Trends** — quarterly WARF / CCC / junior OC vs their covenants.
+- **Top 10 Obligors** and industry concentration.
+- **Payment Date History** — trustee-style: interest & principal proceeds,
+  senior/sub management fees, debt interest, equity distribution and
+  annualized equity yield per quarter.
+- **Equity** — cumulative distributions to date plus engine-projected
+  forward distributions, and the projected tranche paydown from today's
+  balances.
+
 ---
 
 ## Data in and out

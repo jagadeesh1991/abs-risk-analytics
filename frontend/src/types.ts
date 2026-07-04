@@ -54,7 +54,7 @@ export interface FilterOptions {
   states: string[]
 }
 
-export type ValueFormat = 'currency' | 'percent' | 'number' | 'score' | 'text'
+export type ValueFormat = 'currency' | 'percent' | 'number' | 'score' | 'text' | 'status'
 
 export interface ChartResponse {
   chart_id: string

@@ -14,6 +14,11 @@ function toCsv(columns: Column[], rows: Row[]): string {
   return `${head}\n${body}`
 }
 
+function StatusPill({ value }: { value: string }) {
+  const cls = value.includes('PASS') ? ' ok' : value.includes('FAIL') ? ' fail' : ''
+  return <span className={`badge${cls}`}>{value}</span>
+}
+
 export default function DataTable({ columns, rows, exportName }: {
   columns: Column[]
   rows: Row[]
@@ -43,7 +48,9 @@ export default function DataTable({ columns, rows, exportName }: {
               <tr key={i}>
                 {columns.map((c) => (
                   <td key={c.key}>
-                    {c.format === 'text' ? String(r[c.key] ?? '—') : fmtValue(r[c.key] as number, c.format)}
+                    {c.format === 'status' ? <StatusPill value={String(r[c.key] ?? '—')} />
+                      : c.format === 'text' ? String(r[c.key] ?? '—')
+                      : fmtValue(r[c.key] as number, c.format)}
                   </td>
                 ))}
               </tr>

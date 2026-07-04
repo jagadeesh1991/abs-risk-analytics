@@ -1,7 +1,9 @@
 import type { FilterState } from '../types'
 
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(path, init)
+  // no-store: API responses must never come from the browser's heuristic
+  // HTTP cache (stale data after backend restarts / SPA-fallback mixups)
+  const res = await fetch(path, { cache: 'no-store', ...init })
   if (!res.ok) {
     let detail = res.statusText
     try {

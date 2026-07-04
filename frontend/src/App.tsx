@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
+import CloManagement from './pages/CloManagement'
 import Comparison from './pages/Comparison'
 import Distributions from './pages/Distributions'
 import Geography from './pages/Geography'
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/structuring/abs" element={<Structuring dealType="abs" />} />
           <Route path="/structuring/clo" element={<Structuring dealType="clo" />} />
           <Route path="/structuring/rmbs" element={<Structuring dealType="rmbs" />} />
+          <Route path="/clo-management" element={<CloManagement />} />
           <Route path="/upload" element={<Upload />} />
         </Route>
       </Routes>

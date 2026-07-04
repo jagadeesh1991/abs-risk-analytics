@@ -2,9 +2,13 @@
 
 Enterprise-style structured credit analytics across **ABS, CLO and RMBS**: upload
 loan tapes (CSV/Excel), normalize them to a canonical schema, monitor credit through
-13 dashboard tabs (delinquency trends, vintage curves, roll rates, surveillance
-corridors, geography), and structure deals with a real cash-flow waterfall engine
-(OC triggers, tranche PV / yield / duration / WAL, equity MOIC, scenario grids).
+14 dashboard tabs (delinquency trends, vintage curves, roll rates, surveillance
+corridors, geography), structure deals with a real cash-flow waterfall engine
+(OC triggers, tranche PV / yield / duration / WAL, equity MOIC, scenario grids),
+and manage a multi-deal CLO shelf the way an institutional platform does —
+deal board with OC/IC coverage cushions, indenture compliance reports
+(coverage / quality / concentration tests), trustee payment-date history,
+cross-deal obligor overlap and equity NAV & distributions.
 
 ## Quick start (fresh machine)
 

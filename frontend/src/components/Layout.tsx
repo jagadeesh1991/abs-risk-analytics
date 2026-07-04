@@ -19,6 +19,7 @@ const NAV = [
     { to: '/structuring/abs', label: 'Auto ABS', icon: '▦' },
     { to: '/structuring/clo', label: 'CLO', icon: '◫' },
     { to: '/structuring/rmbs', label: 'RMBS', icon: '⌂' },
+    { to: '/clo-management', label: 'CLO Management', icon: '▣' },
   ]},
   { section: 'Data', items: [
     { to: '/upload', label: 'Upload Tape', icon: '⇪' },

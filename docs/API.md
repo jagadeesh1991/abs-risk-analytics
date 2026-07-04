@@ -93,6 +93,19 @@ Run body — **unset fields fall back to the template defaults**, so
 `portfolio_id` swaps the template pool for an uploaded tape (balance / WAC /
 WAM derived from its latest snapshot); the capital stack re-scales to the pool.
 
+## CLO platform management
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/clo/platform` | shelf-wide deal board, platform KPIs, aggregated exposure charts, cross-deal obligor overlap |
+| GET | `/api/clo/deals/{deal_id}` | per-deal compliance report (OC/IC/quality/concentration), quality trends, top obligors, trustee payment-date history, equity analytics, forward projection |
+
+`deal_id` is the shelf identifier (e.g. `2021-2`, `2024-1`); the deal list is
+in the platform response under `deals`. Both endpoints return `charts` maps of
+standard chart payloads (kpis / table / line / bar / scatter). Tables carrying
+a `status` column format render PASS/FAIL pills in the UI. The shelf is
+synthetic, seeded and deterministic — no uploaded data is required.
+
 Response shape:
 
 ```json
