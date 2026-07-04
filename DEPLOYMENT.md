@@ -1,6 +1,10 @@
 # Porting to the Office System
 
-Step-by-step guide for getting this project running on a corporate Windows machine.
+Corporate-environment specifics: proxies, TLS interception, no-admin installs,
+and the path to multi-user deployment. For the general get-it-running steps on
+any fresh system/VDI (clone → install → run → verify → troubleshoot), start
+with **[docs/SETUP.md](docs/SETUP.md)** — this document covers what corporate
+networks add on top.
 
 ## 0. What travels and what doesn't
 

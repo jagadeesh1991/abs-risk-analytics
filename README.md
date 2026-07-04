@@ -1,40 +1,54 @@
 # STRATA — Structured Risk & Tranche Analytics
 
-Enterprise-style loan-level analytics, modeled on the dashboards at loantapedata.com:
-upload loan tapes (CSV/Excel), normalize them to a canonical schema, and explore them
-through interactive dashboards — delinquency trends, vintage curves, roll-rate matrices,
-stratification tables, distributions and geographic maps.
+Enterprise-style structured credit analytics across **ABS, CLO and RMBS**: upload
+loan tapes (CSV/Excel), normalize them to a canonical schema, monitor credit through
+13 dashboard tabs (delinquency trends, vintage curves, roll rates, surveillance
+corridors, geography), and structure deals with a real cash-flow waterfall engine
+(OC triggers, tranche PV / yield / duration / WAL, equity MOIC, scenario grids).
+
+## Quick start (fresh machine)
+
+```powershell
+git clone https://github.com/jagadeesh1991/abs-risk-analytics.git
+cd abs-risk-analytics
+.\start.ps1        # first run: installs everything, then opens both servers
+```
+
+Open http://localhost:5173 → **Generate demo data** → explore. Prerequisites are
+just Git + Python 3.11+ (+ Node 20+ for frontend development). Full step-by-step
+instructions for a new system or VDI — including manual setup, a Python-only
+production mode, Linux/macOS commands and a troubleshooting table — are in
+**[docs/SETUP.md](docs/SETUP.md)**.
+
+## Documentation
+
+| Document | What's in it |
+|---|---|
+| [docs/SETUP.md](docs/SETUP.md) | Get running post-clone on any system/VDI: prerequisites, one-command & manual start, production mode, verification, troubleshooting |
+| [docs/USER_GUIDE.md](docs/USER_GUIDE.md) | Every screen explained: dashboards, structuring screens, upload wizard, exports, glossary |
+| [docs/API.md](docs/API.md) | REST endpoint reference with request/response shapes |
+| [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) | Repo layout, the three extension points, conventions, testing, dev gotchas |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Production blueprint: ingestion pipeline, waterfall & risk engine design, Kafka/Redis/TimescaleDB topology |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Corporate-environment specifics: proxies, TLS interception, no-admin installs, multi-user path |
+| [db/schema.sql](db/schema.sql) · [infra/](infra/) | PostgreSQL/TimescaleDB DDL and docker-compose/K8s manifests |
 
 ## Stack
 
-- **Backend** — Python 3.11, FastAPI, pandas. Tapes stored as parquet (one file per
-  portfolio + as-of date), metadata in SQLite. No database server needed.
+- **Backend** — Python 3.11, FastAPI, pandas/NumPy. Tapes stored as parquet (one file
+  per portfolio + as-of date), metadata in SQLite. No database server needed; zero
+  external calls at runtime.
 - **Frontend** — React 19 + TypeScript + Vite, Apache ECharts.
+- **Quant core** — pure NumPy: CPR/CDR collateral projection (fixed/floating,
+  annuity/bullet), OC-trigger waterfall with cash conservation asserted every period,
+  PV / IRR / effective duration, parallel scenario grids.
 
-## Run it
+## Demo data
 
-```powershell
-# 1. Backend (first time: create venv + install)
-cd backend
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m uvicorn app.main:app --port 8001
-
-# 2. Frontend (second terminal; first time: npm install)
-cd frontend
-npm install
-npm run dev
-```
-
-Open http://localhost:5173 and click **Generate demo data** (or run
-`.\.venv\Scripts\python.exe -m app.sample_data` from `backend/`). Five portfolios are
-created — prime auto, subprime auto, super-prime bank auto, mortgage and consumer —
-each with 24 monthly snapshots simulated with FICO-dependent delinquency transitions
-and rate-dependent prepayment (refi incentive).
-
-Or run both with the helper script: `.\start.ps1` from the repo root — it picks the
-next free backend port automatically if 8001 is occupied (the Vite proxy follows via
-the `BACKEND_PORT` env var), and Vite itself falls back to 5174+ if 5173 is taken.
+**Generate demo data** (UI button, or `python -m app.sample_data` from `backend/`)
+creates five portfolios — prime auto, subprime auto, super-prime bank auto, mortgage
+and consumer — each with 24 monthly snapshots simulated via FICO-dependent Markov
+delinquency transitions and rate-dependent prepayment. The CLO screen additionally
+uses a synthetic 180-name BSL loan book (rating-linked spreads/prices, 15 industries).
 
 ## Tests
 
