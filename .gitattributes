@@ -5,3 +5,4 @@
 *.png binary
 *.svg text
 *.parquet binary
+data/** filter=lfs diff=lfs merge=lfs -text
