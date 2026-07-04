@@ -1,0 +1,17 @@
+# runtime data (regenerable; real tapes must never be committed)
+data/
+exports/
+
+# python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# node
+frontend/node_modules/
+frontend/dist/
+
+# misc
+.DS_Store
+*.log
