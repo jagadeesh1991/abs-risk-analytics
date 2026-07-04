@@ -34,6 +34,56 @@ const TITLES: Record<DealType, string> = {
   rmbs: 'RMBS Structuring',
 }
 
+interface ChartSlot { id: string; title: string; sub?: string; span: 4 | 6 | 8 | 12; height?: number }
+
+const COMMON_TOP: ChartSlot[] = [
+  { id: 'tranche_table', title: 'Tranche Results',
+    sub: 'PV & duration from ±50bp reprice; yield is the IRR at par; MOIC on equity', span: 12 },
+  { id: 'capital_stack', title: 'Capital Structure', sub: 'Tranche sizing over the collateral', span: 4, height: 340 },
+  { id: 'paydown', title: 'Tranche Balance Paydown', sub: 'Outstanding balance by tranche', span: 8, height: 340 },
+]
+
+const COMMON_BOTTOM: ChartSlot[] = [
+  { id: 'collateral', title: 'Collateral Cash Flows', sub: 'Monthly collections by source', span: 6 },
+  { id: 'debt_service', title: 'Liability Cash Flows', sub: 'Fees, coupons, principal, equity distributions', span: 6 },
+  { id: 'equity_grid', title: 'Equity PV Sensitivity', span: 12, height: 320 },
+]
+
+/* Asset-class-specific screens: each class shows the analytics its desk
+   actually monitors, alongside the shared waterfall views. */
+const LAYOUTS: Record<DealType, ChartSlot[]> = {
+  abs: [
+    ...COMMON_TOP,
+    { id: 'cnl_curve', title: 'Cumulative Net Loss vs Triggers', span: 6 },
+    { id: 'excess_spread', title: 'Excess Spread', span: 6 },
+    { id: 'oc', title: 'Overcollateralization Test', span: 6 },
+    { id: 'credit_enhancement', title: 'Credit Enhancement', span: 6 },
+    { id: 'vector_table', title: 'Vector Analysis — WAL by Prepay Speed', span: 12 },
+    ...COMMON_BOTTOM,
+  ],
+  clo: [
+    { id: 'clo_quality', title: 'Portfolio Quality Tests', sub: 'Trustee-report collateral metrics', span: 12 },
+    ...COMMON_TOP,
+    { id: 'clo_ratings', title: 'Collateral Rating Distribution', span: 6 },
+    { id: 'clo_industries', title: 'Industry Concentration (Top 10)', span: 6 },
+    { id: 'clo_price_spread', title: 'Loan Price vs Spread', span: 6, height: 320 },
+    { id: 'tranche_oc', title: 'OC Ratios by Tranche', span: 6, height: 320 },
+    { id: 'equity_distributions', title: 'Equity Distributions by Year', span: 6 },
+    { id: 'vector_table', title: 'Vector Analysis — WAL by Prepay Speed', span: 6 },
+    ...COMMON_BOTTOM,
+  ],
+  rmbs: [
+    ...COMMON_TOP,
+    { id: 's_curve', title: 'Prepayment S-Curve', span: 6 },
+    { id: 'note_rate_dist', title: 'Borrower Note Rate Distribution', span: 6 },
+    { id: 'current_ltv', title: 'Current LTV Distribution', span: 6 },
+    { id: 'vector_table', title: 'Vector Analysis — WAL by Prepay Speed', span: 6 },
+    { id: 'oc', title: 'Overcollateralization Test', span: 6 },
+    { id: 'credit_enhancement', title: 'Credit Enhancement', span: 6 },
+    ...COMMON_BOTTOM,
+  ],
+}
+
 function toForm(d: TemplateInfo['defaults']): FormState {
   return {
     cpr: +(d.cpr * 100).toFixed(2), cdr: +(d.cdr * 100).toFixed(2),
@@ -162,19 +212,11 @@ export default function Structuring({ dealType }: { dealType: DealType }) {
             </span>
           </div>
           <div className="grid">
-            <div className="col-12">{chart('tranche_table', 'Tranche Results',
-              'PV & duration from ±50bp reprice; yield is the IRR at par; MOIC on equity')}</div>
-            <div className="col-4" style={{ gridColumn: 'span 4' }}>{chart('capital_stack', 'Capital Structure',
-              'Tranche sizing over the collateral', 340)}</div>
-            <div className="col-8" style={{ gridColumn: 'span 8' }}>{chart('paydown', 'Tranche Balance Paydown',
-              'Outstanding balance by tranche', 340)}</div>
-            <div className="col-6">{chart('oc', 'Overcollateralization Test', undefined, 300)}</div>
-            <div className="col-6">{chart('credit_enhancement', 'Credit Enhancement', undefined, 300)}</div>
-            <div className="col-6">{chart('collateral', 'Collateral Cash Flows',
-              'Monthly collections by source', 300)}</div>
-            <div className="col-6">{chart('debt_service', 'Liability Cash Flows',
-              'Where the money goes: fees, coupons, principal, equity', 300)}</div>
-            <div className="col-12">{chart('equity_grid', 'Equity PV Sensitivity', undefined, 320)}</div>
+            {LAYOUTS[dealType].map((slot) => (
+              <div key={slot.id} className={`col-${slot.span}`}>
+                {chart(slot.id, slot.title, slot.sub, slot.height ?? 300)}
+              </div>
+            ))}
           </div>
         </>
       )}

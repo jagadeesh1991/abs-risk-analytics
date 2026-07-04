@@ -16,6 +16,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from ..db import get_session
+from ..quant.class_analytics import CLASS_EXTRAS
 from ..quant.collateral import project_collateral
 from ..quant.curves import DiscountCurve
 from ..quant.deal_templates import TEMPLATES
@@ -240,26 +241,30 @@ def run(body: RunRequest, session: Session = Depends(get_session)):
         "subtitle": "Equity PV across prepayment (x) and default (y) scenarios",
     }
 
+    charts = {
+        "tranche_table": tranche_table,
+        "capital_stack": capital_stack,
+        "paydown": paydown,
+        "oc": oc_chart,
+        "credit_enhancement": credit_enhancement,
+        "collateral": {
+            "type": "bar", "yFormat": "currency", "stacked": True, "x": months,
+            "series": [
+                {"name": "Net interest", "data": [round(float(v), 2) for v in cf.net_interest]},
+                {"name": "Scheduled principal", "data": [round(float(v), 2) for v in cf.scheduled_principal]},
+                {"name": "Prepayments", "data": [round(float(v), 2) for v in cf.prepaid_principal]},
+                {"name": "Recoveries", "data": [round(float(v), 2) for v in cf.recoveries]},
+            ],
+        },
+        "debt_service": debt_service,
+        "equity_grid": equity_grid,
+    }
+    # asset-class-specific desk analytics (CNL triggers, WARF/WAS, S-curve, ...)
+    charts.update(CLASS_EXTRAS[body.deal_type](deal, pool, assumptions, curve, result, cf))
+
     return {
         "pool": _pool_json(pool),
         "deal": _deal_json(deal, pool),
         "oc_breached": bool((~result.oc_pass).any()),
-        "charts": {
-            "tranche_table": tranche_table,
-            "capital_stack": capital_stack,
-            "paydown": paydown,
-            "oc": oc_chart,
-            "credit_enhancement": credit_enhancement,
-            "collateral": {
-                "type": "bar", "yFormat": "currency", "stacked": True, "x": months,
-                "series": [
-                    {"name": "Net interest", "data": [round(float(v), 2) for v in cf.net_interest]},
-                    {"name": "Scheduled principal", "data": [round(float(v), 2) for v in cf.scheduled_principal]},
-                    {"name": "Prepayments", "data": [round(float(v), 2) for v in cf.prepaid_principal]},
-                    {"name": "Recoveries", "data": [round(float(v), 2) for v in cf.recoveries]},
-                ],
-            },
-            "debt_service": debt_service,
-            "equity_grid": equity_grid,
-        },
+        "charts": charts,
     }

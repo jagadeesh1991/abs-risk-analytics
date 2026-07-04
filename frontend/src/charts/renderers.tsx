@@ -320,6 +320,39 @@ function RadarChart({ p, height }: { p: any; height?: number }) {
   return <EChart option={option} height={height} />
 }
 
+function ScatterChart({ p, height }: { p: any; height?: number }) {
+  const sizes = p.points.map((pt: any) => pt.size ?? 1)
+  const maxSize = Math.max(...sizes, 1)
+  const option: EChartsOption = {
+    tooltip: {
+      ...TOOLTIP_STYLE,
+      formatter: (params: any) => {
+        const pt = p.points[params.dataIndex]
+        return `${pt.name}<br/>${p.xLabel}: <b>${pt.x}</b> · ${p.yLabel}: <b>${pt.y}</b>`
+      },
+    },
+    grid: { ...GRID, bottom: 46 },
+    xAxis: {
+      type: 'value', scale: true, axisLine: AXIS_LINE, splitLine: SPLIT_LINE,
+      axisLabel: BASE_TEXT, name: p.xLabel, nameLocation: 'middle', nameGap: 30,
+      nameTextStyle: BASE_TEXT,
+    },
+    yAxis: {
+      type: 'value', scale: true, axisLine: AXIS_LINE, splitLine: SPLIT_LINE,
+      axisLabel: BASE_TEXT, name: p.yLabel, nameTextStyle: BASE_TEXT,
+    },
+    series: [{
+      type: 'scatter',
+      data: p.points.map((pt: any) => [pt.x, pt.y]),
+      symbolSize: (_v: unknown, params: any) =>
+        6 + 20 * Math.sqrt((p.points[params.dataIndex].size ?? 1) / maxSize),
+      itemStyle: { color: 'rgba(79,143,247,0.55)', borderColor: '#4f8ff7' },
+      emphasis: { itemStyle: { color: '#2dd4bf' } },
+    }],
+  }
+  return <EChart option={option} height={height} />
+}
+
 let mapRegistered = false
 function MapChart({ p, height }: { p: any; height?: number }) {
   const [ready, setReady] = useState(mapRegistered)
@@ -378,6 +411,7 @@ export default function ChartRenderer({ payload, height, exportName }: {
     case 'box': return <BoxChart p={payload} height={height} />
     case 'waterfall': return <WaterfallChart p={payload} height={height} />
     case 'map': return <MapChart p={payload} height={height} />
+    case 'scatter': return <ScatterChart p={payload} height={height} />
     case 'sankey': return <SankeyChart p={payload} height={height} />
     case 'funnel': return <FunnelChart p={payload} height={height} />
     case 'radar': return <RadarChart p={payload} height={height} />
