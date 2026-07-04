@@ -16,7 +16,7 @@ def demo_pool() -> CollateralPool:
                           servicing_fee=0.005, name="Demo Auto Pool")
 
 
-def deal_for_pool(pool: CollateralPool, name: str = "ABF 2026-1",
+def deal_for_pool(pool: CollateralPool, name: str = "STRATA 2026-1",
                   oc_trigger: float = 1.03) -> DealSpec:
     """Standard 70/15/10 sequential stack over the pool; 5% initial equity
     cushion (initial OC = 100/95 ≈ 1.053 vs a 1.03 trigger)."""

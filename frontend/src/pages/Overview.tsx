@@ -22,7 +22,7 @@ export default function Overview() {
   if (!loading && !hasData) {
     return (
       <div className="empty-hero">
-        <h2>Welcome to Lord Abbett ABF</h2>
+        <h2>Welcome to STRATA</h2>
         <p>No loan tapes loaded yet. Generate realistic demo portfolios to explore every<br />
           dashboard, or upload your own CSV / Excel loan tape.</p>
         <button className="btn primary" onClick={generateDemo} disabled={generating}>

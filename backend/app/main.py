@@ -11,7 +11,7 @@ from .api import portfolios, structuring, uploads
 from .config import FRONTEND_ORIGINS, ensure_dirs
 from .db import init_db
 
-app = FastAPI(title="Lord Abbett ABF — Loan Tape Analytics", version="0.2.0")
+app = FastAPI(title="STRATA — Structured Risk & Tranche Analytics", version="0.2.0")
 
 app.add_middleware(
     CORSMiddleware,

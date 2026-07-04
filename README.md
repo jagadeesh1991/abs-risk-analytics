@@ -1,4 +1,4 @@
-# Lord Abbett ABF — Loan Tape Analytics
+# STRATA — Structured Risk & Tranche Analytics
 
 Enterprise-style loan-level analytics, modeled on the dashboards at loantapedata.com:
 upload loan tapes (CSV/Excel), normalize them to a canonical schema, and explore them

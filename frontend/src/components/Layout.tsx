@@ -25,7 +25,7 @@ export default function Layout() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div className="logo">Lord Abbett <span>ABF</span></div>
+        <div className="logo">STRA<span>TA</span></div>
         {NAV.map((group) => (
           <div key={group.section}>
             <div className="nav-section">{group.section}</div>
