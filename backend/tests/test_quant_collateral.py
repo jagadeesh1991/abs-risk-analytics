@@ -52,3 +52,27 @@ def test_cpr_vector_is_honored():
     cf = project_collateral(POOL, Assumptions(cpr=ramp, cdr=0.0, recovery_lag=0))
     assert cf.prepaid_principal[0] == 0.0
     assert cf.prepaid_principal[12] > 0.0
+
+
+def test_bullet_pool_balloons_at_maturity():
+    from app.quant.curves import DiscountCurve
+    pool = CollateralPool(balance=1_000_000.0, wac=0.078, wam=60,
+                          spread=0.035, amort_style="bullet", servicing_fee=0.0)
+    cf = project_collateral(pool, Assumptions(cpr=0.0, cdr=0.0, recovery_lag=0),
+                            curve=DiscountCurve.flat(0.043))
+    # ~1%/yr mandatory amortization, then the balloon repays everything at WAM
+    assert cf.scheduled_principal[0] == pytest.approx(1_000_000 * 0.01 / 12, rel=1e-6)
+    assert cf.scheduled_principal[59] == pytest.approx(cf.begin_balance[59], rel=1e-9)
+    assert cf.end_balance[59] == pytest.approx(0.0, abs=1e-6)
+
+
+def test_floating_pool_interest_tracks_curve():
+    from app.quant.curves import DiscountCurve
+    pool = CollateralPool(balance=1_000_000.0, wac=0.078, wam=24,
+                          spread=0.035, amort_style="bullet", servicing_fee=0.0)
+    a = Assumptions(cpr=0.0, cdr=0.0, recovery_lag=0)
+    low = project_collateral(pool, a, curve=DiscountCurve.flat(0.03))
+    high = project_collateral(pool, a, curve=DiscountCurve.flat(0.05))
+    assert high.gross_interest.sum() > low.gross_interest.sum()
+    with pytest.raises(ValueError):
+        project_collateral(pool, a)   # floating pool without a curve

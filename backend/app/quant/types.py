@@ -12,11 +12,19 @@ import numpy as np
 
 @dataclass(frozen=True)
 class CollateralPool:
-    """Aggregated collateral characteristics driving the projection."""
+    """Aggregated collateral characteristics driving the projection.
+
+    Fixed-rate amortizing pools (auto ABS, RMBS) use `wac` with the annuity
+    schedule. Leveraged-loan pools (CLO) set `spread` (coupon = 1m index
+    forward + spread, re-projected off the curve every scenario) and
+    `amort_style='bullet'` (~1%/yr mandatory amortization, balloon at WAM).
+    """
     balance: float                 # current pool balance
     wac: float                     # weighted-average gross coupon (annual, decimal)
     wam: int                       # weighted-average remaining maturity (months)
-    servicing_fee: float = 0.005   # annual servicing strip on performing balance
+    servicing_fee: float = 0.005   # annual servicing/management strip on performing balance
+    spread: float | None = None    # set -> floating collateral: index fwd + spread
+    amort_style: str = "annuity"   # "annuity" | "bullet"
     name: str = "pool"
 
     def __post_init__(self) -> None:
@@ -26,6 +34,10 @@ class CollateralPool:
             raise ValueError("wac must be a decimal annual rate in (0, 1)")
         if self.wam < 1:
             raise ValueError("wam must be at least 1 month")
+        if self.amort_style not in ("annuity", "bullet"):
+            raise ValueError("amort_style must be 'annuity' or 'bullet'")
+        if self.spread is not None and not 0 <= self.spread < 0.25:
+            raise ValueError("spread must be a decimal in [0, 0.25)")
 
 
 @dataclass(frozen=True)

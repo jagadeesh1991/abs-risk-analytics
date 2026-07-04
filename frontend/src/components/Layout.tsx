@@ -14,7 +14,11 @@ const NAV = [
     { to: '/transitions', label: 'Transitions', icon: '⇄' },
     { to: '/prepayment', label: 'Prepayment', icon: '↻' },
     { to: '/comparison', label: 'Comparison', icon: '⚖' },
-    { to: '/structuring', label: 'Structuring', icon: '▦' },
+  ]},
+  { section: 'Structured Products', items: [
+    { to: '/structuring/abs', label: 'Auto ABS', icon: '▦' },
+    { to: '/structuring/clo', label: 'CLO', icon: '◫' },
+    { to: '/structuring/rmbs', label: 'RMBS', icon: '⌂' },
   ]},
   { section: 'Data', items: [
     { to: '/upload', label: 'Upload Tape', icon: '⇪' },

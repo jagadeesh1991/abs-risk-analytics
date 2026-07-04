@@ -24,14 +24,42 @@ from .waterfall import WaterfallEngine
 
 def run_deal(deal: DealSpec, pool: CollateralPool, assumptions: Assumptions,
              curve: DiscountCurve) -> WaterfallResult:
-    """Full pipeline: collateral projection -> waterfall."""
-    cf = project_collateral(pool, assumptions)
+    """Full pipeline: collateral projection -> waterfall. The curve drives both
+    floating collateral coupons and floating tranche coupons."""
+    cf = project_collateral(pool, assumptions, curve)
     return WaterfallEngine(curve).run(deal, cf)
 
 
 def price(cashflows: np.ndarray, curve: DiscountCurve) -> float:
     """PV of month-end cash flows 1..n under the curve."""
     return float((np.asarray(cashflows, dtype=float) * curve.dfs(len(cashflows))).sum())
+
+
+def irr_annual(investment: float, cashflows: np.ndarray,
+               lo: float = -0.95, hi: float = 5.0) -> float | None:
+    """Annualized IRR of `-investment` at t=0 followed by monthly cash flows.
+    Bisection on the annual rate; None when no sign change in [lo, hi]."""
+    cash = np.asarray(cashflows, dtype=float)
+    if investment <= 0 or cash.sum() <= 0:
+        return None
+    t_years = np.arange(1, len(cash) + 1) / 12.0
+
+    def npv(rate: float) -> float:
+        return float((cash / (1.0 + rate) ** t_years).sum()) - investment
+
+    f_lo, f_hi = npv(lo), npv(hi)
+    if f_lo * f_hi > 0:
+        return None
+    for _ in range(100):
+        mid = (lo + hi) / 2.0
+        f_mid = npv(mid)
+        if abs(f_mid) < 1e-7 * investment:
+            return mid
+        if f_lo * f_mid < 0:
+            hi = mid
+        else:
+            lo, f_lo = mid, f_mid
+    return (lo + hi) / 2.0
 
 
 # --------------------------------------------------------------------------

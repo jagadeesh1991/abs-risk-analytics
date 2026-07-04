@@ -116,7 +116,7 @@ dates, statuses in many spellings (`charge-off`, `PIF`, `late30`, …).
 | Transitions | Delinquency Sankey flow, transition-rate trend, attrition funnel |
 | Prepayment | CPR/CDR trend, prepay speed by note rate and FICO band |
 | Comparison | Issuer matrix, delinquency trend per portfolio, risk radar, DPD ranking |
-| Structuring | Sequential-pay waterfall with OC trigger/turbo: tranche PV & effective duration (±50bp), WAL, principal windows, paydown, OC path, collateral decomposition |
+| Structured Products | Three screens — **Auto ABS** (fixed amortizing collateral, A/B/C + OC turbo), **CLO** (floating BSL bullet collateral, AAA→BB floating stack), **RMBS** (30yr prime jumbo, senior/mezz) — each with tranche PV, yield (IRR), effective duration, WAL, equity MOIC, capital stack, paydown, OC path, credit enhancement, liability cash flows, and a CPR×CDR equity PV grid |
 
 ## Getting data in and out
 

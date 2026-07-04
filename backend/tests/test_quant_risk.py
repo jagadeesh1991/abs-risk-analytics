@@ -50,6 +50,40 @@ def test_duration_matches_zero_bond_analytic():
     assert duration == pytest.approx(5.0, rel=1e-3)
 
 
+def test_irr_matches_known_annuity():
+    from app.quant.risk import irr_annual
+    # 120 monthly payments of 1,000 against 100,000: solve and verify by NPV
+    cash = np.full(120, 1000.0)
+    rate = irr_annual(100_000.0, cash)
+    assert rate is not None
+    t = np.arange(1, 121) / 12.0
+    assert (cash / (1 + rate) ** t).sum() == pytest.approx(100_000.0, rel=1e-5)
+    assert irr_annual(0.0, cash) is None
+
+
+def test_clo_and_rmbs_templates_run_clean():
+    from app.quant.deal_templates import TEMPLATES
+    curve = DiscountCurve.demo_sofr()
+    for key, tpl in TEMPLATES.items():
+        pool = tpl.build_pool()
+        deal = tpl.build_deal(pool)
+        result = run_deal(deal, pool,
+                          Assumptions(cpr=tpl.defaults["cpr"], cdr=tpl.defaults["cdr"],
+                                      severity=tpl.defaults["severity"],
+                                      recovery_lag=tpl.defaults["recovery_lag"]),
+                          curve)
+        senior = result.tranches[0]
+        assert senior.writedown.sum() == pytest.approx(0.0, abs=1.0), key
+        assert result.residual_cash.sum() > 0, key
+    # matched floating assets/liabilities: CLO AAA duration ~ 0
+    clo = TEMPLATES["clo"]
+    pool = clo.build_pool()
+    metrics = tranche_risk(clo.build_deal(pool), pool,
+                           Assumptions(cpr=0.20, cdr=0.02, severity=0.35, recovery_lag=3),
+                           curve, parallel=False)
+    assert abs(metrics["A (AAA)"].effective_duration) < 0.5
+
+
 def test_pipeline_smoke_and_pv_additivity():
     pool = demo_pool()
     deal = deal_for_pool(pool)
