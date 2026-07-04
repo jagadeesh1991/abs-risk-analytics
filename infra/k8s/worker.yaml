@@ -1,0 +1,38 @@
+# Compute tier: Celery workers running scenario/MC tasks; scales on load.
+# Kafka/Redis/TimescaleDB are managed services in production (or StatefulSets
+# in dev clusters) — not defined here.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risk-worker
+  namespace: risk-analytics
+spec:
+  replicas: 4
+  selector: { matchLabels: { app: risk-worker } }
+  template:
+    metadata: { labels: { app: risk-worker } }
+    spec:
+      containers:
+        - name: worker
+          image: registry.internal/abs-risk-analytics/api:latest
+          command: ["celery", "-A", "app.tasks", "worker", "--concurrency=8", "--prefetch-multiplier=1"]
+          envFrom: [{ secretRef: { name: risk-env } }]
+          resources:
+            requests: { cpu: "2", memory: "2Gi" }
+            limits:   { cpu: "8", memory: "8Gi" }
+---
+# Scale the worker pool on CPU; swap for KEDA on Celery queue depth when available.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: risk-worker
+  namespace: risk-analytics
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: risk-worker }
+  minReplicas: 2
+  maxReplicas: 32
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 70 }

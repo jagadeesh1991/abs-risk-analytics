@@ -14,6 +14,7 @@ const NAV = [
     { to: '/transitions', label: 'Transitions', icon: '⇄' },
     { to: '/prepayment', label: 'Prepayment', icon: '↻' },
     { to: '/comparison', label: 'Comparison', icon: '⚖' },
+    { to: '/structuring', label: 'Structuring', icon: '▦' },
   ]},
   { section: 'Data', items: [
     { to: '/upload', label: 'Upload Tape', icon: '⇪' },

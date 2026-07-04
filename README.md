@@ -116,6 +116,7 @@ dates, statuses in many spellings (`charge-off`, `PIF`, `late30`, …).
 | Transitions | Delinquency Sankey flow, transition-rate trend, attrition funnel |
 | Prepayment | CPR/CDR trend, prepay speed by note rate and FICO band |
 | Comparison | Issuer matrix, delinquency trend per portfolio, risk radar, DPD ranking |
+| Structuring | Sequential-pay waterfall with OC trigger/turbo: tranche PV & effective duration (±50bp), WAL, principal windows, paydown, OC path, collateral decomposition |
 
 ## Getting data in and out
 
@@ -125,6 +126,17 @@ dates, statuses in many spellings (`charge-off`, `PIF`, `late30`, …).
   CSV. `latest` is one row per loan; `history` stacks every as-of date, and re-uploading
   it recreates all snapshots (the importer splits on the `as_of_date` column).
 - Pre-generated exports of the demo portfolios live in `exports/`.
+
+## Structured products risk engine
+
+`backend/app/quant/` is a typed, tested quantitative core: CPR/CDR vector collateral
+projection, a stateful priority-of-payments waterfall with OC trigger and turbo
+diversion, and PV / effective-duration / scenario-grid risk (process-parallel,
+Celery-signature-compatible). The production blueprint — ingestion (Intex/Bloomberg
+adapters, Kafka topics), compute topology (Celery/Ray workers, Redis,
+TimescaleDB), and deployment — is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md),
+with PostgreSQL DDL in [db/schema.sql](db/schema.sql) and deployable manifests in
+[infra/](infra/).
 
 ## Roadmap ideas
 

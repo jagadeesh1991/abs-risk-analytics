@@ -7,7 +7,7 @@ from fastapi.responses import FileResponse
 
 from . import analytics  # noqa: F401  (imports register all charts)
 from .api import analytics as analytics_api
-from .api import portfolios, uploads
+from .api import portfolios, structuring, uploads
 from .config import FRONTEND_ORIGINS, ensure_dirs
 from .db import init_db
 
@@ -30,6 +30,7 @@ def startup() -> None:
 app.include_router(portfolios.router)
 app.include_router(analytics_api.router)
 app.include_router(uploads.router)
+app.include_router(structuring.router)
 
 
 @app.get("/api/health")

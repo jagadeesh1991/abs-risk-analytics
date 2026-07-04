@@ -7,6 +7,7 @@ import Overview from './pages/Overview'
 import Performance from './pages/Performance'
 import Prepayment from './pages/Prepayment'
 import Stratification from './pages/Stratification'
+import Structuring from './pages/Structuring'
 import Surveillance from './pages/Surveillance'
 import Transitions from './pages/Transitions'
 import Upload from './pages/Upload'
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/transitions" element={<Transitions />} />
           <Route path="/prepayment" element={<Prepayment />} />
           <Route path="/comparison" element={<Comparison />} />
+          <Route path="/structuring" element={<Structuring />} />
           <Route path="/upload" element={<Upload />} />
         </Route>
       </Routes>
