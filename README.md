@@ -11,10 +11,14 @@ corridors, geography), and structure deals with a real cash-flow waterfall engin
 ```powershell
 git clone https://github.com/jagadeesh1991/abs-risk-analytics.git
 cd abs-risk-analytics
-.\start.ps1        # first run: installs everything, then opens both servers
+.\start.ps1        # Windows — first run: installs everything + demo data, then opens both servers
+./start.sh         # Linux/macOS equivalent
 ```
 
-Open http://localhost:5173 → **Generate demo data** → explore. Prerequisites are
+Open http://localhost:5173 and explore — demo data is generated automatically on
+the first run. Python dependencies are pinned in `backend/requirements.lock` and
+the frontend installs with `npm ci`, so every machine gets identical versions.
+Prerequisites are
 just Git + Python 3.11+ (+ Node 20+ for frontend development). Full step-by-step
 instructions for a new system or VDI — including manual setup, a Python-only
 production mode, Linux/macOS commands and a troubleshooting table — are in

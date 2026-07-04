@@ -37,19 +37,23 @@ git clone git@github.com:jagadeesh1991/abs-risk-analytics.git
 ## 3. One-command start (recommended)
 
 ```powershell
-.\start.ps1
+.\start.ps1        # Windows
+./start.sh         # Linux / macOS
 ```
 
 The script:
-1. creates `backend\.venv` and installs Python dependencies (first run only),
-2. runs `npm install` for the frontend (first run only),
-3. **probes for free ports** — if 8001 is taken (Docker, other apps) it picks
+1. finds a working Python 3.11+ (skipping the Microsoft Store `python` stub),
+   creates `backend\.venv` and installs the **exact pinned versions** from
+   `backend/requirements.lock` (first run only),
+2. runs `npm ci` for the frontend so `package-lock.json` is honored (first run only),
+3. generates the five demo portfolios if `data/` is empty (first run only),
+4. **probes for free ports** — if 8001 is taken (Docker, other apps) it picks
    the next free one and points the frontend proxy at it via `BACKEND_PORT`,
-4. opens two terminal windows: the API and the Vite dev server.
+5. starts both servers (two terminal windows on Windows; background jobs on
+   Linux/macOS, Ctrl-C stops both).
 
-Open **http://localhost:5173** → click **Generate demo data**. Five synthetic
-portfolios (17,000 loans × 24 monthly snapshots) are created in ~10 seconds and
-every dashboard lights up.
+Open **http://localhost:5173** — every dashboard is already lit up with the
+demo data (17,000 loans × 24 monthly snapshots across five portfolios).
 
 > **"running scripts is disabled on this system"** → run once:
 > `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
@@ -61,7 +65,9 @@ every dashboard lights up.
 # --- backend (terminal 1) ---
 cd backend
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+# requirements.lock = exact pinned versions (reproducible install);
+# requirements.txt  = the loose ranges they were resolved from.
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock
 .\.venv\Scripts\python.exe -m app.sample_data          # optional: demo data via CLI
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --port 8001
 
@@ -137,17 +143,22 @@ Interactive API docs: http://localhost:8001/docs
 ```bash
 git clone https://github.com/jagadeesh1991/abs-risk-analytics.git
 cd abs-risk-analytics
+./start.sh          # same first-run install + demo data + port probing as start.ps1
+```
 
+Manual equivalent:
+
+```bash
 # backend
 cd backend
 python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
+.venv/bin/pip install -r requirements.lock
 .venv/bin/python -m app.sample_data
 .venv/bin/python -m uvicorn app.main:app --port 8001 &
 
 # frontend (dev)
 cd ../frontend
-npm install
+npm ci
 npm run dev                    # or: npm run build  → production mode as in §5
 ```
 
@@ -157,8 +168,8 @@ Everything else (ports, `BACKEND_PORT`, data locations, tests) is identical.
 
 ```powershell
 git pull                                   # get latest code
-cd backend; .\.venv\Scripts\python.exe -m pip install -r requirements.txt   # if deps changed
-cd ..\frontend; npm install; npm run build                                  # if frontend changed
+cd backend; .\.venv\Scripts\python.exe -m pip install -r requirements.lock  # if deps changed
+cd ..\frontend; npm ci; npm run build                                       # if frontend changed
 cd ..\backend; .\.venv\Scripts\python.exe -m pytest tests -q                # sanity check
 ```
 

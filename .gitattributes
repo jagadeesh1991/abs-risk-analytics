@@ -1,0 +1,7 @@
+# Normalize line endings so scripts work when the repo is cloned on any OS.
+* text=auto
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.svg text
+*.parquet binary
