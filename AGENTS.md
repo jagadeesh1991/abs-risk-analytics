@@ -15,6 +15,6 @@ Common commands:
 
 Non-obvious caveats:
 - **Demo data is required for the UI to show anything** and is generated separately from dependency install. Generate it from `backend/` with `./.venv/bin/python -m app.sample_data` (~5s, creates 5 portfolios). `data/` is gitignored and fully regenerable.
-- **`data/app.sqlite` may exist as a stale git-LFS pointer** (ASCII text, ~130 bytes) rather than a real SQLite DB. `start.sh` only generates demo data when `data/app.sqlite` is *missing*, so a stale pointer silently blocks generation. If the app has no data, `rm -rf data` then regenerate with `sample_data`.
-- **The frontend has no `package-lock.json`**, so `npm ci` fails — use `npm install` (that is why `start.sh` uses `npm ci || npm install`).
+- **`data/app.sqlite` may exist as a stale git-LFS pointer** (ASCII text, ~130 bytes) rather than a real SQLite DB. `start.sh` only generates demo data when `data/app.sqlite` is *missing*, so a stale pointer silently blocks generation. If the app has no data, `rm -rf data` then regenerate with `sample_data`. Note `data/` is committed via git-LFS despite being in `.gitignore`; regenerating it produces local runtime diffs that should not be committed.
+- **`frontend/package-lock.json` is tracked**, so use `npm ci` for reproducible installs. Avoid `npm install`, which rewrites the lockfile (the local npm rewrites `libc` fields and produces spurious diffs). `start.sh` still uses `npm ci || npm install` as a fallback.
 - Creating the venv requires the `python3-venv` system package (already present in the VM snapshot).
