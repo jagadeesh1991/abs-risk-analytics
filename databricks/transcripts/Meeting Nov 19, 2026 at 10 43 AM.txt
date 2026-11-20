@@ -1,0 +1,147 @@
+Meeting Nov 19, 2026 at 10:43 AM
+Duration: 20:58
+
+Me:
+[0:00] If I click in here, I can see the full definition that Jamie's learned for this activated user centric, and it's pulled it from this product plan growth hub dashboard, which was authored by our colleague Jeffrey, who is indeed the data scientist driving Jamie growth. That's actually really special, right? Imagine all the chains of data works that are probably creating assets related to the growth of their individual products.
+
+[0:22] We probably also have some added dashboards for Jamie growth that I really don't want this to pick up. Antular rank understands that this is the right asset to use for the my question, probably based on the combination of things like, you know, I'm using this dashboard very often, it's rising in popularity, but Jeffrey also has this long track record as a successful data scientist for this team. So as he continues to produce more and more great
+
+[0:46] assets, the whole team really benefits even before we try to codify these as unity catalog semantics. Of course, if we want to do that, it's actually super easy, right? You can create semantics and minutes using Gini code, but we don't have to because we're combining this power of human-curated ontology with what Gini has learned.
+
+[1:06] As with that, I think we are probably ready to send this out to the folks who are going to be in the meeting and we're maybe going to move along some of those features that looked like they were successful. And when we do this, we're just using MCB rights and those are completely governed through Unity Gateway. So admins and users retain complete control over what Gene's able to do with these tools.
+
+[1:25] And I might not always be here, so I might want to put this on a schedule. It's going to run every week, maybe when I'm out of office. But you'll notice, like I instigated this chat, right?
+
+[1:34] I was I was coming to Genie with a question. Genie can also proactively notify me if there's something that I should know. It has a really good sense for the metrics that I care about, the metrics my team cares about, and it can tell me when something anomalous happens.
+
+[1:46] Maybe I want to start a root cause analysis or a forecast as a result. Those are all built straight into Genie and it's very good at doing both of those things. Or if there's a workflow that's maybe not built in, I want to create a skill.
+
+[1:58] Maybe I want to create a skill that evaluates all of our new features against the metrics in this adoption review and then I want to share it with all my teammates thinking of the gateway. Or maybe I want to use this conversation as a starting point for a G agent. But that would be an expert coworker that's able to answer questions and take action related to this particular topic.
+
+[2:18] It would use the assets that we looked at today as a C for the agent's learning. So clearly this is just a small taste of what Jeannie's able to do. But even in just five minutes, we prepped for an entire executive review and we kept the word moving.
+
+[2:32] And that's only possible because Jeannie understands our institutional knowledge to be on top of the ontology, it's able to take that context and turn it into really meaningful insights quickly and really meaningful action, both reactive and proactive, and it enforces our organization's governance the entire time. So we'd encourage you to continue moving workflows over to Jeannie and continue sharing feedback as we shape this product together. Up next is a fireside chat, so welcome back Sam, who's
+
+[3:00] going to introduce some of our customers. Thank you all.
+
+[3:26] Thanks for joining us. Uh we've got Manakshi and Charlotte from Mongolese and Mugis. So well, first off, thanks for being here and thanks for the great partnership with BetaBurk so many years.
+
+[3:36] We appreciate it. Maybe to start our to start off, I'll start with you, Menaqshi. Tell us a little bit about your role and maybe a little bit about the journey of consolidating on today where it's and what it's meant for your business.
+
+[3:50] Yeah, sure. So I lead uh digital finance, we've done analytics, North America data analytics, and data product excellence. Like many companies, our data grew up across fragmented systems and environments.
+
+[4:03] With databricks, we are consolidating on lake house with Unity Catalog as a governed layer for access across agents, applications, dashboards, and so on. We are using data products in our silver layer and metric view in the gold layer ready for consumption. We are still in the early days, but I see the conversation shifting from you know what's the right number to what do we do about it.
+
+[4:30] So yep. Awesome. And Charlotte.
+
+[4:34] Yeah, we have a very similar story at in the Moody's side as well. So I run a team called Business Systems and we're uniquely positioned at the intersection between the business, technology, and data, which is really exciting especially right now. And historically our challenge has been very similar where we had a lot of information and data in fragmented places, we had outdated applications and systems that we were using, and people were just spending more time moving
+
+[5:03] data from point A to point B and spending time reconciling information as opposed to knowing what the version of the truth was. Fast forward to where we are right now, where we consolidate everything in the data bricks and made that our trusted data foundation for all the work that we're doing. We're not only bringing together our ARR, financial, customer and product data, but we're mixing that together and making sure that's a trusted governance source so that
+
+[5:28] we're able to use it not just for data analytics, which is what we were doing before, but we're also using it for AI and our agent reposition. Love it. Manaxu, you mentioned uh governance is is very important.
+
+[5:43] We're going to talk a little bit about Gini, but you both kind of focus first on building that govern foundation, community community catalog before or for scanning genie and doing a few other things. Why did that come first? Why was that a big focus?
+
+[5:57] You can talk a little bit about governance as a critical factor. Sure. So governance is a really critical for scaling fast and doing things right in a large organization.
+
+[6:09] There are there is a lot of data that lot of different kind's consumers. So governance is kind of the number one priority for us because we also don't get a second chance with our business users you know once the answer is not people can fall back into old ways of working. Earlier we have a lot of humans correcting dashboards and fixing things in Excel, but we're really trying to move away from that and trusted data foundation
+
+[6:36] is our number one priority to be ready for the agents. Yeah, um you know for us governance was definitely not an afterthought. It was forefront in our mind when we started our journey and we started this project about a year ago, moving everything into Databricks.
+
+[6:56] And with AI being so prominent in all of these business organizations right now, the importance of governance and having a trusted data foundation is really an accelerant, I think, in your AI operations and journey in order to like operationalize all these things. So what was really important for us to get right up front was making sure that we had defined business definitions that were consistent across the organization and metrics that people agreed with. We had the
+
+[7:27] right access and controls and permissions and the data was correct, accurate, timely, so that the information could be trusted. You only have one chance to make sure that people trust the information. You have that one first impression.
+
+[7:41] If people ask that question and they don't get the right answer, they're going to abandon and not, it's not going to help to drive adoption. So if you get that right from the forefront, it really becomes that accelerant, which is why I think governance is so important as a trusted foundation. Let's go one level deeper, especially on the genie side, Charlotte.
+
+[8:00] Your customer operations and risk team is one of Moody's most active uh user group of genie. Can you share an example around how finance or operations users are using it, what the results have been bringing it to life of it? Yeah, absolutely.
+
+[8:15] That's actually the first place that we started. And I would be remiss to not also acknowledge our financial counterparts from our finance department that was really pivotal in this kind of first step and first journey. And I think what was sort of unique in our situation was in our historical data warehouse we had maybe some management reporting, but we were weren't really bringing all of that information together into like one place.
+
+[8:40] So the first step for us was really around making sure that we brought that internal data together. We added more things beyond just ARR. We included growth drivers, we had product usage, we had customer information and what we did was we mixed that with our Moody's company data, Orbis, which is a product that we also sell to the market.
+
+[9:01] And what that enabled us to do was really be able to segment and make sure that we had the right customer definition and we could ask questions that really answered how our segments were performing, where were the growth drivers, where were we underperforming? And add that with a context and working with our business partners to make sure that context was there, then we were able to use AI to essentially ask questions in plain language. And that
+
+[9:27] was just something that we never did before, which is instead of interacting with the traditional reports and dashboards, now our business users, not just our technical users, were on the platform, but asking business questions and getting business answers that they could really rely on, and that was the seller for us. And Menachi, I think you've had users on the supply chain and retail side of the business. How is that affecting business decision making, speed, etc.?
+
+[9:55] Yeah, so one of the most important things is where people choose to spend time, identifying the issue really fast, and asking you know three by questions with the connected data set, finally it would impact where the where we spend our money, what's our forecast. But I think one of the most crucial shifts we are seeing is where is the leadership spending time, discussing which issues. Nobody's spending time debating which is the right number.
+
+[10:23] I mean that's our target. We are not there yet, but that's really I can see the difference and uh really excited about what comes next. Uh to close in one sentence, what's your advice uh for readers in the room who want business users, not just the data teams to adopt AI structurally.
+
+[10:41] Yeah. Thank you. So I think uh we often get very obsessed with technology, but I really like this quote which says you know the technology we use impresses no one.
+
+[10:53] It is the experience that we create with it. And I would say really focus on the business problem and technology will follow on its own, but with the connection is really good. Yeah, I can echo that point even more.
+
+[11:08] I had something very similar in the mind for my one piece of advice, which is start with the business problem and know the questions that you're trying to answer. Put trusted data underneath it as your foundation and make the AI easier so that the processes that you're replacing are better than they were before. Love it.
+
+[11:29] Well thank you very much for being here. Thanks for the partnership. Hopefully this was helpful.
+
+[11:33] Thank everyone here. Thank you very much.
+
+[11:39] And we'll welcome Arsenal back up to the stage.
+
+[11:50] Okay, I promise this is the last time you're gonna have to listen to me today. Unless you're in one of the sessions later, then I apologize in advance. Okay, so we've now gone through many things, right?
+
+[12:01] We've talked about the lower, you know, the data layer. We've talked about how you get access to it. We've talked about governance.
+
+[12:09] And then we've also talked about building ontology and context and some of the applications that you use. Now, one of the most uh common questions I get asked is what's happening in the state of applications, right? Like what's the latest, what's the future, how are we going to build that?
+
+[12:26] How are we going to make that work? And I think we are, we've talked about this for many years, but I think in this case, something profound is actually happening. Now, what does that mean?
+
+[12:36] If you take a look at an organization, you have all of these different data storage, which are frankly like all of the uh you know, databases for all the functions, and many of them have many, many databases sitting underneath there and they all have data and then everybody's trying to build agents on top of them and then you're also trying to figure out with these agents how do you get them to kind of connect to each
+
+[12:56] other and to be able to do that work. So you hear people talk about okay, these are working, what's gonna happen now? I have agents, I have headless uh offerings, and what about this concept of systems of record?
+
+[13:10] Well, I think the future is that you know applications are going to be decomposed and you're going to move to this notion um you know of like a future software stacking. Now what are the key principles of that? Um, I think the biggest part is you want to build something that's known as an agent or just a system of record.
+
+[13:29] And that consists of three key pieces. One, you need to make sure that you have all of the data, no more of these silos that sit in one place that they can't connect together. It needs to have all of the actual data in an open format.
+
+[13:44] Two, it's really important that you have governance across them. And then three, you need to make sure that you have context. Because if you don't, every application is going to try to build this by itself on its own.
+
+[13:58] And the most important part is these are the common substrates. You do not want folks at the edge building it. You want it to be you know common underneath so you can build your applications.
+
+[14:07] So from a database perspective, what our goal has always been is how can we make sure that we are this agentic system of records. We talked about many of the books, like all of the data that you have with the different access patterns that you need under there, you have the governance layer and then you also have for that the context and ontology to allow people to access that data and build it on top of. So
+
+[14:31] for this, now once you build this, how do you actually get all of the folks on top to be successful and meet their needs, right? What do some of these applications in the future look like? And I think you have to think about the personas differently.
+
+[14:45] For the business users, we've already spent a fair bit of time talking about it. The first one is many folks want to take the fact that I can chat and talk to the data to actually convert it to agents that run on my behalf, like they're doing work for me. Second is that many of them are building line of business agents as well.
+
+[15:04] As I mentioned, somebody says this is the agent that helps me do the you know codes of the books for finance. This is an agent that basically helps with HR so that basically people can interact and work with them. And then third, you're looking at actually building applications.
+
+[15:18] And so that is this world of five-coded business applications. And so Genie app Builder allows you to just use natural language and easily build applications which have Gini in them, have access to all of the context underneath. That is one for the business user.
+
+[15:34] Then as you go and think about a little bit more of the data practitioners, we talked about this. This mostly comes to Gini Code, which is you're allowed to build all of these data FAI Python, and Gini Zero Ops, which is how do you put on autopilot and make sure that you're not spending your time maintaining that fixing any issues that you have. And then as we get to the developer themselves, that is where they're trying
+
+[15:59] to build you know actual age custom agents from scratch. And they need a lot more. They need all of the access to all of the different models and all of the different frameworks and harnesses and orchestration layers.
+
+[16:10] Um, they talk about things like memory and search. They also really care about for deploying this concept of sandboxes that you could have, actual app environments with Databricks apps you can deploy to, and then how do you go optimize it, right? You talk about evaluation, you talk about observability and the like and monitoring it.
+
+[16:28] And for that, especially that group as they're talking about, well, what does the GENTIC SDLC look like? What is the harness that I use? That's where we've seen a lot of success and adoption from the whole community that's open source of OmniGIN, which allows you to build and leverage all of the different you know coding harnesses underneath without having to you know be wedded to one or the other.
+
+[16:50] So, with that, the goal is to say, okay, I've, you know, built this agency system record and I want to be able to build these agency apps and transform the business. Now, one other small thing that I'll put on there, from a database perspective, we're oftentimes sitting there looking at and saying, we are a platform, we allow people to build all of these applications. What are some of the most common things that people are building and
+
+[17:15] doing it on their own? And in that way, you know, okay, why are they building it on their own? It usually says, well, they fit this model really well, which is, you know, significant amounts of data, they need to get context, and they need an agent solution to be able to deliver that.
+
+[17:34] And second, because they look at it and say it's easier it's native in the platform versus the existing offerings out there. And so for that we look at like how do we help these customers accelerate faster by giving them native solutions instead of forcing them to build their own. And the first two forays into that space are actually in the security space, Blake Watch, and in the marketing space with customer lake.
+
+[17:58] And without going into too much detail, the way that we should think about from a lake watch perspective is it is a simple solution. So in this day and age we hear about all of the different cyber attacks that are coming in. They're nearly all agentic in nature.
+
+[18:12] I think that that era that we could say, don't worry, you know, humans are going to look at it, they're going to monitor it, figure out what went wrong. We can't defend at that speed in an agentic world. So it looks at how does it do bringing all of the data, cleaning it up, doing agentic rep hunting and security response.
+
+[18:31] You know, agents that basically detect, remediate, get the human validation where needed, or just basically help protect the business. And from an agenda marketing perspective with customer lake, we see a lot of people who are building, you know, customer 360s saying, I have all of this data, I need to be able to look at it and figure out how do I do you know fuzzy identity management of consolidating all these different data points for a customer
+
+[18:54] to one? How do I think about you know profiles and segments and then how do I do infinity campaigns of actually actuating these and running those campaigns based on those profiles and segments that I've built. Okay, just to you know wrap up for today, what did we actually talk about?
+
+[19:11] We started with this high-level picture of the overall database architecture as the data layer, the governance layer, as well as then the development and productivity and work layer on top. And we talked about some core principles that were really, really important as people wanted to put AI into production. Number one, the bottom layer was choice.
+
+[19:33] Right? You wanted to connect all of the data. It's any data, any cloud, any model, to just maintain and maximize that choice of what you can do.
+
+[19:42] The second one was at the governance layer, it was really important for control to making sure that you're deploying AI securely and responsibly in a way that you can monitor it and that you can control the costs for it to make sure you're getting the maximizing your ROI. And then lastly it is building out that automated context to make sure that you have that enterprise wide brain um so that any of the application and basically capabilities
+
+[20:08] you have on top, leverage it to give you basically high accuracy at basically much faster speeds and lower cost. And that is the basically databricks and AI platform that brings all four of those together. Thank you everybody.
+
+[20:24] I'll welcome the same back for stage.
+
+[20:40] Oh no, we're not done yet. Just kidding, we're basically done. Um so please um get to the breakout tracks this afternoon.
+
+[20:50] We've got our executive forum, lunch. Please get to the expo floor as well, and this is the sponsor we've got.

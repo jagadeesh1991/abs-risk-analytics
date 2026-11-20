@@ -1,0 +1,85 @@
+Meeting Nov 19, 2026 at 2:28 PM
+Duration: 11:15
+
+Me:
+[0:00] So that it's more performant going forward. And sorry, maybe one last thing for this, because there might be a question about later. Uh but we chose to build these custom agents in a Dataverks app.
+
+[0:10] Is there another way to do that? Absolutely. Uh AgentBricks is something that has evolved a lot in the last year.
+
+[0:16] And so available through the CLI, you can similarly have Modex build something like this for you in Agent Bricks first and still serve it up through the app all the same. Yeah. Cool.
+
+[0:28] So what we'll see here is that the agent actually completed. It took 14 steps. You can dig into all of these and the traces are available as well.
+
+[0:37] And it's able to put together this entire brief for my specific uh client that's going to be working with people in the future, specifically at Northline. You'll see that there's three clear discussions that it wants to dive into specifically, namely the first one being the inventory eligibility as well as the purchase orders and cached conversion. So what you'll see here in step two is that there's been some orders that have been executed in the past that
+
+[1:06] have not actually led to revenue. Why was that? We should definitely have that conversation with the customer.
+
+[1:13] And the cool part about this application is you can also add in a separate kind of commentary to this that you might want to say. So for example, this is only three different discussion points. Can you provide me four or five so that I have ideas for the next conversation?
+
+[1:31] And when I type that in, we'll see that this whole loop will run again. And we'll be going through the exact same loop. And the employee that's working with this workbench has the ability to tweak the discussion and agenda ahead of that final conversation with the client.
+
+[1:50] So at the end of the day, this tool you see right here is really just an added benefit for your employee so that they can do their job better and be more efficient. They can rotate between their multiple different clients and have one specific avenue to get their agenda sorted instead of spending multiple hours, sometimes even days, doing the research for each client to then come up with the final uh agenda in the end. Cool.
+
+[2:18] So this will obviously take a few more minutes to run. We can kind of jump back to this at the end, but it might be good to move forward with the rest of our tracers. Oh yeah.
+
+[2:30] So uh one last thing to to highlight. So we talked about earlier how you can see the ML flow traces. If we dive in and click into here, you'll see that the request that we had, you'll see the risk brief as well as some of the evidence that it's citing.
+
+[2:47] So what did it pull from your databricks environment in terms of the data? And is there a specific code that I can go back and manually look at myself to try to get all of that information? Some of the contradictions, some of the open questions that it has, all the different components that the agent has reasoned through is all available in one sort of environment that you can all look at.
+
+[3:10] You'll also see here that you can dive into the specific components, so the actual response from the model itself within the agent group, you really get as much granular detail as you're looking. So maybe just to drive this point home, uh if if my job is to build these custom agents uh to make sure that it's actually delivering valuable products to our team internally. What does something like ML flow provide?
+
+[3:34] How do I take what's in there and ultimately improve the agenda workflow that we have? Yeah, great question. So MLflow is actually super helpful for the entire stack of building an agent.
+
+[3:46] In my opinion, the most value comes at the very beginning when you're even defining what a good agent looks like. So we start a lot of our conversations with customers through eval driven development. So we build out our entire eval set ahead of time.
+
+[4:00] We understand what our most common queries are as well as what are some edge cases and we extrapolate that to a very large level. And then we have some responses that we would deem acceptable, and then we define the graders as well for how we determine whether an agent has produced the right answer or not. And building upon that, after you've actually built the agent, you can then build a flywheel where these traces are going to
+
+[4:25] be fed back into your evals so that you can constantly improve your e-bells, add more inputs as different kind of uh assessments that you want to check in terms of your agent performance. So ML flow is really critical uh to agent development from the very beginning through production as well. Very cool.
+
+[4:43] Yeah, and so if I flip back over to our agenda, we'll see that it has re-rand and now there's a few other discussion points that we can look at and take to our IPA. Cool. flip back.
+
+[5:01] Uh So just to you know quickly hammer this home, so this is what we talked about in terms of the infrastructure with that third use case. Um we really want to see our customers build these custom agents within the Dataverse app environment. Again, OpenAI agents SDK is one option.
+
+[5:18] We've also got the agents API. There's multiple different ways that you can build your agent. And the value of Dataverse app is that it gives you the infrastructure to do that as well as the resources to call different tools.
+
+[5:32] And so just to tie everything back together, um at the very beginning, Sully walked through the infrastructure, or sorry, the example where you were in Codex or ChatGPT work and you asked a simple question about Northline. The second example is when we tried to get more information through Codex, but we provided a bank account number, which was obviously denied, and that showed the value of having Unity Gateway as the governance layer. And then third, that data
+
+[6:00] risk app that I just showed the data summarizer, that That's kind of the three different use cases that we tried to show you over today. And just to end with that phone, Sully, you want to talk a bit about how we work with clusters on this? Absolutely.
+
+[6:15] So this partnership has been an existence for a while now and what we're seeing is a really big uptake for our customer base. So uh hopefully what we showed today didn't seem too complicated building or arriving to this solution where we've got custom agents and then multi-agent system deploys the Databricks Databert's app. But what we'd like to do is talk about Fert's global in this case.
+
+[6:36] So everyone everyone knows Fertz as a car rental agency. And what they were experiencing was an issue with unstructured data and having to aggregate in order to make decisions about how to upsell on certain parts of the resid process. The issue with that of course is that operations leaders can't build scalable AI solutions on top of that, and there's no way to actually reward our top performers based on some of this activity.
+
+[7:02] And so what the solution was for them was to provide this agency system with their customer intelligence using uh GPT models in database apps. And what that ultimately provided for them was a 60 to 65% increased conversion rate on this. They used uh they didn't have engineering loop for this really other than to set these things up using codecs as this place for this encoding work to take place.
+
+[7:30] Um but also in that app, again these aren't obvious applications, they're actually solving real business problems. So including things like Unity Catalog and LateBase are huge. They don't have to worry about the permissions layer.
+
+[7:41] Unity catalog takes care of that for them. And then using something like LateBase, if they need a transactional system that has to be up on the fly block compared to your um but I think the really key thing to take away from this is that it took 11 days from concept to production and so uh for for everyone out here uh you probably have similar challenges in your business where you're wondering how the heck are we
+
+[8:05] going to do this? That's going to take forever to actually scan something up that solves this. But we love what the finish line looks like.
+
+[8:11] Bertz is a fantastic example of in less than two weeks they were actually able to get something like this from the production. So hopefully there were a lot of lessons that we all can walk away from with this session. Whether we again the persona of I I want to be in codecs and Jack DPT work using the plugin, or I'm on government coding with Unity Gateway, or I'm looking for bespoke solutions to solve our real business
+
+[8:34] challenges. Databricks and OpenAI together have all the solutions basically. I think that's it.
+
+[8:42] Yeah. Okay, awesome. Uh we have three minutes left, so uh willing to take some questions.
+
+[9:02] Can use your new model, huh? As a source. How does the cost attribution?
+
+[9:12] Cortex layer is. But yeah, so uh Uh, just two separate things. So using the the G plugin itself using GMC so that has a noise then associated with it.
+
+[9:23] Uh codex does a good job of especially when you remote reaching out the depth immediately. So a lot of the thought process takes place in there. Of course it is sort of an agent-to-agent interaction, so there will be some back and forth between these things.
+
+[9:35] Um the answer to the question will have to sort of work. There's one over here to get another.
+
+[9:53] Is In these examples we looked at um sensitive data from traces and we block that way to guard value. How are those ML flow traces access controlled? Yeah, good question.
+
+[10:07] So again this comes back to a lot of organizated catalog and provide the the situation that I outlined here is probably a bad actual like the point of example because that that bank information is locked somewhere. So as part of this with the string process or ML flow, you can intercept those things and ask them for actually lands anywhere in databricks. Um and again that can all be controlled when you're doing cataloging.
+
+[10:30] Uh if if you instead want to actually log in for some reason, if that is okay, you can just restrict who has access to that for like information. But for this example, not a not a great situation we actually included the bank information with DII or something like an issue, but you can't block out that information. Yeah, and I think the point of the question also is that we can also decide if kind of managed access
+
+[10:55] to the catalog so that not every developer has access to all things, it's just the folks that can get
+
+[11:05] And that is time. Oh no. Okay.
+
+[11:08] Thanks everybody, really appreciate it. We'll be walking around here.

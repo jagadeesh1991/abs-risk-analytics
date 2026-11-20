@@ -1,0 +1,51 @@
+Meeting Nov 19, 2026 at 3:17 PM
+Duration: 8:02
+
+Me:
+[0:00] Like what does this look like tactically or like what do you even need to might? Yeah, no, that's a great question. And I think that across kind of these these pair data states, it's difficult to understand for really any legacy data warehouse or data lake or any type of platform.
+
+[0:16] It's hard to understand the actual core nuances in the different types of interconnected systems that we have built and that we are maintaining and that we might not even know that we're maintaining, but we actually are. And so in Debian, there's this feature called DeepWiki. Deep Wiki represents this comprehensive suite of source code intelligence that Debian will build as we onboard into a customer's environment.
+
+[0:37] What does that mean? It means that we can bring them all into scripts, all of the sort of procedures, different types of mappings, table flows, different types of applications that might exist as downstream consumers, our SAS, program triggers, all of these different interconnected functionality that has been built up. We can ingest that very easily into deep wiki to give Devon this persistent layer of context and fundamentally an omniscient understanding of everything that exists in our legacy
+
+[1:03] state. And so this is helpful for both me, this kind of the person to understand, but it's very important for Evan to understand because we can then leverage that to help us identify what needs to be retired, what needs to be deduplicated, and ultimately what is at the crux of the migration pattern by grouping things into logical business domains, having that help us sequence out logical migration waves, by analyzing that dependency graph. And Demon won'll just
+
+[1:32] take action, right? We can control the behavior of these agents still, and we can reasonably ask Demon to check in with an architect to get sign-off on what does this data model actually going to look like before we then go fan this out across tens or hundreds or thousands of debit agents. And I know that might sound like a rather large number of agents, but we do have many of our customers that are actively going through
+
+[1:56] this process of thinking through how can you take what maybe was a five-year migration plan and how can we collapse that down into potentially one year maybe even six months by leveraging this parallel capacity without having to dramatically expand your head engineering your head count. And so maybe let's touch a little bit on sort of what does parallelism mean in the sense of like how teams are structured and what this unlocks for teams to kind of
+
+[2:25] think go and shift their focus to if they're not burdened with the backlog of the migration. Yeah. So this is actually really important for like what data teams that we are working with are currently facing of like when we are using dev in these migration like migration paths, it actually allows them to do more work and a lot.
+
+[2:48] First of all, more migrations, because like when we're talking about all of the product suites that Databricks has to offer, there are a lot of different places that we can start with, right? Like we talked about the data warehouse layer, we talked about SaaS and the ML layer, like if we are trying to get to a place that we want a government data correct estate for us to work in, there is a lot of stuff that
+
+[3:11] has just not been worth our time and effort because of the engineering capacity that we lacked to do this. And so this idea of utilizing many dev sessions in Parabel unlocks the capacity to do more and get more workloads onto Databricks and like actually prove it. And so like we'll we'll talk a little bit later about like what this kind of lock once you are on Databricks and how you can use them as engineering capacity to
+
+[3:40] further the the kind of work that you can do in these estates. But the thing that we really want to touch on is this idea that elastic engineering capacity is a net benefit for data practitioners as they are moving into an era where AI has become more native to their business than ever will be. And I think just one point to hit on here is that we are becoming more and more of these managers on these
+
+[4:07] tweets of agents that we are delegating work to. And so one example is maybe we were working with a Jira backlog before, and I would get assigned a ticket myself, and maybe I use it with copilot, and I'll copy and paste the text from that ticket into copile it and run through that locally where I'm prompting and iterating. Or maybe I have my MCP server set up and I'm able to automatically pull that down and iterate
+
+[4:29] and collaborate, come up with my plan, come up the implementation, come up with the tests, but instead, right, why not just assign those tickets directly to Devon? Just assign one, Devon. Why not just send that off?
+
+[4:43] Why not do that for 10, 15, 100? And then I focus on the more complex, the more thoughtful exercises that require more deep thought. So that that's that's really what we're starting to see today.
+
+[4:56] But again, back to kind of that point we were making before, the engineering effort has historically set what we were actually capable of migrating, what was feasible, what was reasonable, what would actually get funded. And so things that work on kind of the critical path would get done reasonably quickly, right? They were credited to the business operation, and so we were able to get some of those over, but then everything in the next tier just kind
+
+[5:18] of kept slipping and slipping and slipping. And now there's this long tail of running our SAS and RETERA data and you know maybe we have our data lake and then we've got all these different estates that we're still paying licensing fees on and it is challenging to get off of it. So how do we collapse those timelines?
+
+[5:39] How do we rapidly accelerate the initial waves? And then how do we think about what's next? What is going to be kind of this next wave of our unlocking our data and our ad capabilities?
+
+[5:53] So one of the things that we kind of wanted to talk about is like what does this look like in actual customer games? Right? And so like we've done a couple of these already and uh the example that I'm going to give to you today is anonymizing a little bit like AB4J500 and our DMJSense combination.
+
+[6:14] But one of the things that we realize is how do we do this effectively with Gebin? And Mason, I think you've worked on this actually. Do you have any context that you can provide for what this looks like?
+
+[6:28] yeah, so I think I think very tactically on this one, right in. The customer had a team of, I think it was around six or seven data practitioners who were going to be moving kind of this data domain, right? This is 150 objects, it's not particularly large, it's a representative sample.
+
+[6:43] that was in more of this kind of pilot scenario for that. But instead of taking those eight people off of their kind of day-to-day work, actually building that database, they said, you know what, let's actually put them into the test. Let's see if cognition actually can stand behind the things that they're making.
+
+[6:59] Let's do this with one engineer, hard con, and let them use as much depth as possible. And then we're able to do 150 objects with full end-to-end parity checks, parity testing against their regiment system in about eight days. So about two two working weeks.
+
+[7:13] Which is these are the types of gains that we are seeing from many of our customers across the board, whether it be in kind of a more software engineering workloads or now in our kind of emerging data engineering workspace and data migration workspaces. Another one that we saw is kind of this representation of this scale that we can hit, right? 1,100 town jobs that were converted across 80 plus sessions all in parallel.
+
+[7:40] How long do you think it would have taken to actually convert 1,1100 of these town pipelines if we were to do them sequentially? How many engineers would it have taken, right? So I think that with this in mind, there's a couple of things and more proactive agents taking action.
+
+[7:57] The other one was wanting to go back on the board. I'm more with the the

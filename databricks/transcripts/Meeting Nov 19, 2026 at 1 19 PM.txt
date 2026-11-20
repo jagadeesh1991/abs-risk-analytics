@@ -1,0 +1,95 @@
+Meeting Nov 19, 2026 at 1:19 PM
+Duration: 12:32
+
+Me:
+[0:00] Available because I had that set up for Unity Gateway. Alright, let's look at the GoboBricks application that I built. So I'm gonna go from Databricks into my Databricks apps.
+
+[0:13] Here I can see my store ops demo. This is also have a sandbox here. I'll show you that right afterwards.
+
+[0:24] In my proper break store demo, I'm gonna pick up the latest version. I'm gonna start by just asking this application, okay what tools do you have access to? Because we saw it a little bit in the architecture, but uh I want a little bit more detail into what you can do what you can't do okay so we have a genie agent uh for store metrics region training we have the store time MCP server, we have the
+
+[0:54] ops task MCP server, so we're able to pull all this data. Okay, that sounds great, but what if I want to ask it some more specific detailed questions? So I'm going to say show the average versus actual training hours for my specific store and flag any stores that are falling behind.
+
+[1:19] Alright, now we're going into Gini Agent. And these are running in parallel to save time, but also just going to take a simple. It's been a lot of walking today already.
+
+[1:36] Alright. Alright, so we can see that if you are like, okay, the status is a little bit uh close uh we you know a little bit of a warning but there's only really one score that's falling behind that's a red flag and that's store 104 Seattle Pike Place and from the region view, it 37 scheduled hours versus 34 completed hours, and this is from our genie agent, which we have access to. But if I want to
+
+[2:09] know why specifically, is it behind on training? It's gonna again query those capabilities. Let's see what it comes up with.
+
+[2:21] Go inside to see Exactly what it's querying and pulling from each. Okay, and it looks like store 104 is falling behind because its scheduled training hours were converted to rush hour service. So basically we're finding out, oh okay, like this store had so many customers, had a huge rush, and they couldn't complete training because they needed to put all these people on the floor and start working.
+
+[2:49] And this is kind of just, I just wanted to ask these kinds of questions because I want to show you just like a normal flow that we're seeing from customers using GD capabilities and building apps that have access to different GMA agents and some key servers. So if I want to know a bit deeper of like, okay, so it's falling behind, but like how does that affect our goals? Do we need to hire more people for
+
+[3:12] that score? Do we need to see if uh we need to take employees from another nearby location and add them to that store, do we have to skip the training hours outside of regular time? And so for that, we're looking at the training goals.
+
+[3:27] So how store 104 is stacks up for training. Okay. And basically it's saying we can't answer that question.
+
+[3:35] We don't have a relevant context. So this is a context problem, and we're going to solve that in on a gent and with our sandbox environment. And so it doesn't have the official company training goals connected, so that's what we have to make sure to add to it.
+
+[3:53] And just looking in apps, in sandboxes, I have this sandbox that I set up. Takes two lines to set up a new sandbox environment. And I set it up, named it the Bo Brace demo.
+
+[4:08] It randomly creates yeah like mad lib words uh for the run and you can easily connect to it in your terminal. So I wanted to just wake it up before the session started. So the first thing I did, I was like, okay, like let me list the sandboxes I have.
+
+[4:25] Alright, I have this one available, it's gonna auto-stop every 10 minutes. So I just restarted it. If I want to stop it again, I just have to change start to stop.
+
+[4:35] And then I can SSH into the sandbox just from my terminal. And then I have my sandbox running. But now I'm going to go to Omnigent and show cans.
+
+[4:47] How many people have used Omnigent? Okay. Yes.
+
+[4:52] So Omnigent is the meta harness. I like to show it because it's it is used by developers but those just in the Databricks platform I don't think use it as much as they should just for kind of getting through tasks. Everyone kind of has their own favorite coding tools or harnesses or metal harnesses.
+
+[5:14] So I just wanted to show this one. It's really fun because the eyes on the starfish move when you move the mouse. And this has the sandbox automatically connected to it, we can connect it locally as well.
+
+[5:27] And this is just the manage on the agent that I'm running. Okay, so on the not going to branch out a company.
+
+[5:43] How would a company pay at the healthcare and life service? How we database now? I'm a slow typer, so we don't want to do that.
+
+[5:58] All Alright, so I'm going to ask um how the right thing is all that's gotta connect sandwiches. medicine box Okay. So now we are connected to our sandbox.
+
+[6:11] Okay, and now we are we are cooking. So I'm gonna ask the omnigent if it can connect to my relevant information. I always have these set up on approved, I never have things set on auto-approved, so we might have to approve a few things because I like to see exactly what my agent's doing and what I'm giving it access to.
+
+[6:36] Alright, so it did find the OBRICS store op, so it found the application and this is a completely new session like if you solved it I'm not giving it any hints or shortcuts to try and fix this problem. I want to see like what it does in a clean sandbox in a you know in a clean session that has no additional context to it. The other thing I really like is that I can um go in
+
+[7:05] and look at the terminal view so I can see exactly from the terminal what it's gaining access to. Or I can keep in chat. Thing I really like about Almagent is I can share my sessions to other members of my team.
+
+[7:20] So if I'm like seeing an air or um I'm creating like a new skill or I'm testing something out I can share it with my team because the collaboration part is important to me and you're able to do that with Omigen. Let's see how it's doing. Alright, like let's change nothing else.
+
+[7:38] Approve, yes. Let's approve of redeploying. I also make sure that whenever I do write this skill that I say ask me to redeploy before you just automatically redeploy.
+
+[7:53] I don't think I can explain why. Some of you are shaking your heads like, yeah, let's just gone and redeployed something on me without checking with me first. Okay.
+
+[8:04] Okay, so we verify the outcome. Let's see if I can see. Yes, perfect.
+
+[8:09] So it can it looks at all these scripts and tests that I've already built for my agent. It's gone through all of them and it's going to update the key ones. And now the sandbox environment, if I don't like what I see, no harm done.
+
+[8:23] And if I do like what I see, I can update my GitHub repo and have this ready to go. It's like I don't like when it says it's scheming. I like random word generation here.
+
+[8:40] All right. Alright, let's see who it did.
+
+[8:48] Alright, so last appointment completed 50 seconds ago. So that looks pretty promising that it did re-deploy the application. Skip this buggy up.
+
+[9:01] Okay. Now let's try re-asking it. What are our FY26 training goals?
+
+[9:08] How does the 104 stack up? We can see, well we can already see the difference, right? We now see that search complements is one of the turns that the agent's taking and in order to go through the process.
+
+[9:22] So I've already hoped and that'll be able to answer the questions. Those parallel tasks have completed. Alright and we're doing pretty good with the internet here, so I'm happy about that.
+
+[9:34] And agent's only as good as its context, the demo is only as good as the Wi-Fi. So these are just things we we build out. Okay, perfect.
+
+[9:43] So I know you were all really anticipating like what the FY26 training goals were, and I'm glad I could tell you them now. So we need to have uh 95% required training and 90% utilization, the store is falling behind because it's at uh 66 percent completion and so we'll probably have to take additional steps like getting more people into that store and to help work the additional shifts. and we can see that the sources are linked
+
+[10:13] and so we have that capability. Do you have time like break on time? We're gonna have time for questions.
+
+[10:20] The last thing I want to show is going to be the traces. So if you were at the keynote I showed U and Fi tracements which are from an admin view, just go back to to my data analytics and AI. I'm actually going to go to my experiments because if you saw that staff we made it auto-rackmatically created a experiment.
+
+[10:48] If I'm just a developer, I don't think you can find traces view, right? Because that's more like for a by admin. So I can look at my experiments owned by me.
+
+[10:59] And I can go into my individual traces.
+
+[11:08] Say phobobricks too much No. I can go into my individual trace and see the exact terms that this is taking. So from the input to the final output, yeah it's a bit it's a bit long, but we saw the the final output but being able to see the steps it takes because it's not just about getting to the right answer, especially if you're concerned about cost, you want to make sure it's not pinging the same MCP
+
+[11:36] server a bunch of times in order to get it to answer. You want to make sure that the path that it's taking is the most straightforward path, and that it's not calling multiple tools multiple times just to get the right answer. Well, that's what we've seen a lot with when we analyze traces for customers for cost been that there's they're pinging too many MCP servers, they're going, you say this took one turn, right?
+
+[12:03] We feel taking like three turns to get to an answer that'll surely take one turn. Alright, everyone, we are gonna have some time for questions, but that's the demo, and thank you very much.
+
+[12:20] Uh if anyone has a question, raise your hand. If you didn't get a chance to eat lunch, just go eat lunch. Any questions?

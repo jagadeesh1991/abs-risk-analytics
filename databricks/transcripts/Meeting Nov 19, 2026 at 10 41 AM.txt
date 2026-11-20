@@ -1,0 +1,19 @@
+Meeting Nov 19, 2026 at 10:41 AM
+Duration: 2:04
+
+Me:
+[0:00] definitions and then it needs to map a robust kind of first party and third party data state against those definitions. Now as Genie is actually navigating that I can click in to see what it's thinking. So it looks like it found some potentially relevant tables, some potentially relevant assets, but it pretty quickly went into that ontology.
+
+[0:19] Notice, for example, we have these unity catalog pages, and we also have these knowledge sticks. And these are facts about the business that Jamie has learned automatically as people do work inside of and outside of data groups. You'll notice, for example, this if it happens to be from GitHub, that's Jeannie reaching into our third-party data estate.
+
+[0:38] And indeed, uh Jeannie actually did run a search. This is again using that new enterprise search index to look at data to rank it or treat it holistically across all of our data rather than just going to get individual siloed MCPs for much better accuracy and latency and token efficiency. Though it did also do a quick MCP query.
+
+[0:57] Because of course we sometimes want to look up data live, we want to grab the freshest data. And last, it's just running some SQL against our live operational data. Because when we ask a question like this we don't want the agent to just you know recite the information that already lives in the document there's no document to answer this question so we do need to combine it with that text sequel or with that that Python execution.
+
+[1:18] and with that we already have a document. And notice that Jeannie did that really quickly. But rather than grinding here and injecting loop of trial and error, Jeannie just went straight to the ground truth and it actually knew how to use it.
+
+[1:30] And it looks like we have some nice visualizations, we have some highlights, some lowlights, some recommendations. And of course everything that you're seeing here is entirely permissions aware. You know, GD doesn't have a separate permission system, it's just enforcing our sources' permissions through community catalog, and that includes the sources that are in Jimmy search.
+
+[1:48] So how do we know that we can actually trust this? Well for that I'm going to pop down into the citations, which is everything that Jimmy actually used to answer my question. And as you can imagine, there's some tables, some links.
+
+[1:58] It looks like there's actually a personal memory snippet. But Jimmy did end up using quite a few components of the unto the.

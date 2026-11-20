@@ -1,0 +1,185 @@
+Meeting Nov 19, 2026 at 11:41 AM
+Duration: 25:56
+
+Me:
+[0:00] But we have this optimized layer that's there to be able to serve your operation data efficiently, and there we have our robots. But we can hear our storage. And we can have our database also fully back-by-out-storage.
+
+[0:14] And there you can write out the data properly. So and the final the final state of the data is this company format, and we write it out in a way where we don't lose any information. So that way it's in its original representation, transport it into a column and format, and we make it available both for operational and local use cases at the same time.
+
+[0:38] The nice thing is that this helps us transform our architecture. For one thing, we can have operational analytical systems working on the same set of data at the same time. So for example, here, I have an HR management system in numero.
+
+[0:53] It goes into our operational compute, we scrap the object storage. And then from the LibPath side, we can perform analytics on the as soon as it's committed. Simple.
+
+[1:05] Hopefully it seems simple. simple. So the art, you know, so you can take this like pipeline scroll where you're doing all this stuff to transform the data into the lighthouse and turn it to something like this.
+
+[1:19] And the way that you get the end of this, where you have your operational systems, you know, you know, we're working on the data directly within your lighthouse, is through Lake Mits. Surprise, from the title of the talk. So what is Lake Mits?
+
+[1:32] Simply, Lakebase is fully managed serverless Postgres. It's open source Postgres. And what we did is Postgres has a very extensible database system.
+
+[1:42] This actually goes back to uh the Berkeley days when it was an academic project. And by extensible, that means that we can change, you know, we can basically add the Postgres without having to forward change the code. So the compute layer of BerkeleyBase is just Postgres.
+
+[1:58] It's open source Postgres. I think it would say, you know, with Postgres 19 being released today, we already have Postgres 19 available. And at the storage layer, it's just an extension that lives underneath, where you can get all sorts of nice properties out of it, including the LPAP architecture as I'll show the next few slides.
+
+[2:17] What's even better is that it's within the Dataverse platform. So you have all the data features available to you, including governance from the Unity Catholic. Why go a bit deeper?
+
+[2:28] You know, why do we decide to build like this or like how do we decide build link base? There's like three design characteristics that we had in mind. So first we want to be familiar, and that's the reason why we chose Postgres.
+
+[2:39] And Postgres is very widely used typically when you build an application these days for starting with Postgres. And you know, we need to go a little bit further. So we want to be meaningful.
+
+[2:50] And this nimble term is actually very important with a lot of the late-based features when we are building applications or building agents. Despite no surprise, like everything's made faster in terms of how we build software. Even like today, like preparing for the upstream postcard service, some things that used to take me 20 hours, I was able to get down to 15 minutes.
+
+[3:11] So we can make sure that our database is able to adapt to that and be able to develop with us. But still an object based system. It's still recorded.
+
+[3:20] We need for it to be able to handle the shipment. So we need to make sure that we can put it out into the back units that hide the process of disaster republic, so durable multi-ulti-selling. So we put these uh design principles and we applied them in the late case.
+
+[3:37] So as mentioned, you know, uh hopefully I don't have to deliver the point too much. Like Postgres is very popular. Um when I actually first started uh you know using Postgres and then becoming part of the open source community, I was one of my parents about it.
+
+[3:50] Like, hey, this is an open source database, we use it to store the critical data, maybe one data for critical data, I don't know. Uh and they don't have some pointing in there. Like a lot a lot has changed over the past 20 years are great for a lot of it's because of you, just because you know you believe in the work that the Postgres community is doing.
+
+[4:09] But a lot of this is something in Postgres available, so it can be used in mission critical applications. And there's a few things that I mean in the link based to make it even easier to use, you know, in you know in the 2020s. So this isn't the nimble piece.
+
+[4:25] One of the nice side effects of the late-based storage architecture is that we do get surplus process that you know compute is stateless, our storage layer is where we're able to maintain the state, and we do some like very nice things to scale up and down. Side effects are that we have auto-scaling. So instead of having to worry about all the too many parameters to compute your workload, but it's automatically does that based upon the traffic
+
+[4:50] that's coming into your database and file. There's also the ability to scale uh scale completely down. And what actually allows us to scale to zero, basically scale to zero when this one tap on the workload is that we can scale almost instantly.
+
+[5:05] Typically is within 59 milliseconds. But probably the most powerful feature on the slide is rangeing. These things get the form for branches.
+
+[5:14] Working on a feature. Yeah, most people. Now, is it when you're building a new feature, let's say you're testing a database change and you and you drop a column, we didn't drop the column.
+
+[5:26] It's kind of hard to store that change. I know it is because I did this the other day without using branching, and it took me 30 minutes to undo this work that I did. But with branching, what happens is you can have your production, let's say you have your production database, you want a test dropping column, you branch, and you have this isolated copy on write compute.
+
+[5:47] And from there, you can do whatever you want to the data. You don't have to duplicate the data, we only add changes, you know, as part of the copy of the right. And you can like you know you can drop every table, drop the user's table.
+
+[5:59] It doesn't impact the production branch. And let's say you decide that you didn't want to drop the user's table, you can instantly roll back and you'll start you know start applying different changes along the way. This is very powerfully attentive error, but this is exactly how agents work.
+
+[6:15] And the responsiveness makes it even easier for agents to build new things faster. So we design this with all this in mind because we want to make sure that you're able to work at internet speed. So how's this possible?
+
+[6:29] So we do need to learn from what came before us and there's key things in the database system that are very important. So for example, you have the write-up hit log, which is a way to speed up writing thoroughly the changes in your system. And then you have these things called data files, which is made up being able to do reads, like they're very efficient.
+
+[6:50] We took all those concepts, but we did this in a distributed architecture, where we have a something called a safekeeper that exists across multiple availability zones and we only consider transaction committed when it's written to do it. And we actually do this in a very fast way too because we know we know that there's durable commit coming in. We're actually in many cases like five minutes faster than just running vanilla postress.
+
+[7:14] Then we have a page server, which similarly is like a multi-songal storage unit that's able to serve the data pages to be able to help us celebrate readings and can scale up and down based upon the traffic in terms of that what's what the things that are going to your database. I'm just explaining this too. You actually don't have to worry about that.
+
+[7:32] Those things know more managing for you and it helps have lots of look like they don't have benefits. So here's an example. Common use case.
+
+[7:42] We have a lot of feature stores opening based and we have customers that we're following the features in the feature store. And in the traditional way of doing this, you're taking something out of your data lake, putting it into Spark, and loading it into the database. But this is loading into the computer layer.
+
+[7:58] And when you do that, you're impacting the production workload. Like you'll often see that you know your query, you know, your transaction per second or group performance will dip like while that load is occurring, and then you'll never work our app. Initially, these loads are going outside your government's values.
+
+[8:13] But with LateBase, we can do the load as a storage. So instead of impacting your compute, you're not impacting your compute. Like we're able to do the load and then you know when the load is done, you know, we can do an atom switch so you're able to start by reading that data.
+
+[8:27] No impact their operational workload. Real case study, we had a customer that was going to do rows per day. It's a API-based application where they need to be able to sort the data very quickly.
+
+[8:39] Initially it's taken them over eight eight hours to build to do it. Once we released the feature to accelerate these loads, it was 3.4 minutes. 147 times faster.
+
+[8:51] It's not an exaggeration, like this is the benefit of the LTAP architecture where when we have this separation of storage of compute, we can do some very nice things. And this gets up in the analytics side with LTAP. So as I mentioned, you know, through LTAP, we're able to start reading our data for analytics as soon as it's committed.
+
+[9:11] And the way we do this is that we take the lake house real-time engine and we're able to read directly from the data that's already in OK storage and the freshly committed data to the page server to be able to complete the queries in real time. No pipelines, we're not trying to like get faster pipelines, try to send data faster across the wire. As soon as the data is committed, as soon as it's written, it's immediately
+
+[9:33] available for analytics. And last but not least, you know, link based is ready for mission-critical workloads. You know, there's you know, purposefully I've made these slides allegible, but no, the point is that the features that you expect from the operational database are with the late base these are the these are the features that we look to make sure it's acceptable to run the workload.
+
+[9:54] These are the features that we have the same so late bases you know here to be able to serve your machine for the mobile workloads. This Linux is here to help serve some of your LatePass workloads where you need to accelerate them further. And I'm gonna do a very quick demo to improve TV like that.
+
+[10:09] Specialist. What specialists and let's see transition? Yes.
+
+[10:14] So real quick, uh I have an application I built. This is uh an order processing application. It's taking orders from local restaurants and then fulfilling them.
+
+[10:22] And you can actually see when I wasn't running the pipeline to actually load the data into the late base. I actually used a pipeline for this one. And we see that it's scaled up and the workload scales over time.
+
+[10:33] So let me do the traditional, I'm gonna run an analytical query against LateBase. And again, Postgres can it can run simple analytics. And I'm saying this here very kindly, like there's all sorts of analytical workloads out there.
+
+[10:45] And we see that it's taking a little bit of time to boot up and try to load all the data in. And it took that 10 seconds. It's not terrible.
+
+[10:54] That's reasonable. But I just ran this against my operational workload, which means I just put you know unnecessary load on my operational workload that's going to impact everything else. So I'm able to publish the Unity Capital and short them here real quick.
+
+[11:11] And I'm going to go and you know here I'm going to use the custom people for it So it's going to need a second to boot up. So let's see the live demo works. Um and Abraham just running real quick.
+
+[11:27] Okay. So you can see that I'm looking at all the layers actions and we can see the data fractions. Like this is you know, this was you know 200 milliseconds.
+
+[11:38] And if I try to run that state analytical query, you know, it's the run Next to it less. Um it completes in you know half you know less than half a second, and the data is in your almost immediately fresh. You know, it's basically you know it's up to the point in time of like the last ten second.
+
+[11:54] Fast. So pretty cool. Yeah.
+
+[11:57] I think it's pretty cool. Thank you. So we have a lot of customers using LinkedIn over 6000.
+
+[12:06] And I'm really excited to provide one of the month here on the C screening Most of them are detailed.
+
+[12:27] It's very close to lunch hour if you guys see long. The fun part is that for me is presentation, right? You guys have seen what is under the book.
+
+[12:35] I have to only show you how fast you can travel, right? So that's what my responsibility is. Good.
+
+[12:41] So before going forward, right, we want to make sure you're seeing your house and I can. How take a moment like you see how we are making sure that your streaming experience when you see streaming curves, how we are really stuck in mind if you show off your name. In the last week, when you were accessing a service, you might have access to it from the same device and say, you ended up having to use a
+
+[13:08] local PI for a robot location because we don't want to ask people. terms of Sure low IPO. And say some X.
+
+[13:16] And why that's evil for us, right?
+
+[13:22] Um Let's be honest here, right? You don't want to wait in that. No matter you are doing your listening part, or no matter your trying to sign into the listing generations, no matter if you are small stand or you are listening based on the fashion, right so our goal here is that as a commerce and i lackers now how we can leave you uh seamless logic right we want to make sure and we're creating the term
+
+[13:48] conflicts from earlier in the how complex obviously by using laser script here in the how we can have a reverse on it show us assessment of our idea we need and it brings possible right how we have to make sure we are not making our system botherable by doing that. Second, Disney has a brand, right? He will be carrying in our shoulder because each and every one of them can relate to a character and have you
+
+[14:17] a soul set how I can make sure as a part of our team we can give you the best possibility to offer that internally. Now saying that can we start our journey because a little bit not setting us for the success from the email process right as you can see there are different world commons that maybe application meaning they may talk you for the best success rate of your payment, maybe identifying any throttle transaction or login
+
+[14:47] admin, or maybe giving you the personalized offer. So as a as business being such a bigger you know cool rate, we have ESPN, we have Hulu, we have business training. Each and every data science thing, use data that's in Snowflake, maybe new catalog in AWS, or maybe it's already in unique catalog.
+
+[15:06] And though here and there, team are using database to train the model. When it comes to serve it, that becomes a little bit tricky. Was there a different type of email access?
+
+[15:18] It can be pre-confirmated data that we are using to serve some decision making. There are offline in the model which making inference in a certain time cadence, and there are real-time model survey. And each and everything, just to get to the shortest part, have used
+
+[15:46] So when you start this journey this media year a couple of months ago, we had one of the challenges to suffer to begin with, as I was mentioning about um as you can In a one of the assay, if we are not training regularly, we do start becoming sick, right? We want to capture as much information as we can from the last five minutes or last 15 minutes to have easy decision making as legacy and fractions
+
+[16:14] test So we can interfain our model in that one in a life cycle that we know we can able to learn the parameters for the model that would be able to make the best decision. However, as a part of the commerce as a month and we have a lot of we have to make sure it's the business takeholder or product manager has a visibility of what is the model dynamics that you need to produce. It's not
+
+[16:39] the main offline model we have issued, but also to make sure we have some golden data to human these age cases. On top of that, we don't have to mention the requirement of a unified feature system. Some of our colleagues are here, they are working hard to make sure that they run this uh near reaction spark declared by to get the source of the tool.
+
+[17:03] Why can't we be able to make this source of perfect capital in the real-time decision making? So obviously, as you've seen in the previous slide, each and every data science team is using a variety of the data sources. So we're gonna be talking in the next slide how we can solve the problem become making the unique five features in the whole thing in the lifecycle.
+
+[17:23] And it's imperative to say that in the previous slide we saw, there's a way to life. It's hard to come up with the number of the service availability. On the other hand, you mean in the engineering R, we have to comply with our engineering leadership's OPR, right?
+
+[17:41] That we want online and beyond service at the key and it was very hard to identify a computer when we are serving this ML artifact in different way. Last but not least, no one wants to write that, right? No matter how fast you go, right?
+
+[17:55] So you want to make sure whenever these analysis is making a decision, how quickly we can create the feedback. You put up seen in all the presentation slides from the morning, there is data are the way we can find so all the logs that we can post inference that allow us to understand how that inference distribution is mapping with what we are training and making sure what is the user conversion, right? Because at the end of
+
+[18:20] the day, in the model is just to make sure we are meeting our user the best experience we can. So nevertheless, what we're short out to solve is to make sure we have a standardized anal AI cycle that we have we have and making sure all the model can use these features rather than having to have a running same reference and finally simple way to start the model right so that our business uh stakeholders were building
+
+[18:49] the other service in the downstream engineering. They don't have to worry about integrating each and giving the service in the different info.
+
+[18:59] So how solid, right? So as I was mentioning, passing off the unit system. We realize we that having each and if we make a stick order data conservative by our screen, by our app stream, it's really hard to detect anything your data from one gigabyte.
+
+[19:20] So what you start realizing, having all this. it openly, don't read the room. We can easily kind of no matter the execution or already have that set up our success.
+
+[19:33] Building this federal feature store where our data science and machine learning practitioners don't need to worry about running well in one different agents. The second is the one regions are looking at our director Raj, he was here giving a note and mentioned about the high latency and some millisecond response type. So this was a harder challenge for us to make sure we cannot take we cannot take the traffic from a piece of coastal US, right?
+
+[20:02] It literally added more than 100 milliseconds round 20 traffic right so how we can name this we have to make sure our asset can be accessible for all the regions So I can US europe uh wherever the service police or is getting from we have to go ahead and pick up a lot of the tribes to be very asset as close to the nation right. Now in a model. So I think uh Jonathan also mentioned about
+
+[20:30] the branching price and finding We have a one-fired computer where once the model is being trained and evaluated, we can quickly do all the media study so that we can promote from the stage corruption. Now, last part of the police we talk about obstacle and not spend too much time and also I talk about without industry where we have a human in the loop, we have the model performance. Now, no brainer, that's the topic of the
+
+[21:00] counter section is the in this file. As you can see, knowing that on under the base for our requirement is there is fine. And that's making sure that we are using that unique catalog offline features to serve in the real time, right?
+
+[21:17] So we can run our OLAP query and have that way to be technology to serve it in the real time. We don't have to copy the data. Now our additional service.
+
+[21:26] When we started our journey, our database used workspace is used to be only in the system. We have to closely work with our data platform team to make sure that we have a lot of serverless capability are level in all of the regions. So by using data share, the same asset is accessible from multiple different regions rather than making a copy or worrying about what is the freshness of the data?
+
+[21:50] Because everything is under the hood taking care of IL, like this technology, right? Not waiting with a lot of skill because someone has shown you how we think the system can scale. So no matter how much two changes and probably if you were one of the administration fan, you know there is a very critical on-key and off the power tendency.
+
+[22:10] We have to make sure how many times we expand logging, we have to make a decision on a sleep uh some millisecond or ten seconds ten milliseconds or less right so uh in a model I guess you're not talking about it also but this is one of the database of it right we cannot ignore what we can talk about data and that's where no matter how data has able to use the sign that we need. But
+
+[22:34] we'll be able to build this in the platform anyway, right?
+
+[22:47] So we should really in less than six months, right? And the way we have to actually that we don't have to maintain each and every components under the platform that is powering us. So when we started our journey, one of the key principles that we have in the product, rather than making a platform, rather than building all the tools that we have to maintain, and we are paying animal number of individuals a part of the team,
+
+[23:13] how are we going to be able to leverage the latest and latest tool that are each vendor of various platforms as a solution are present in the recent uh slightly. And that's where we started our journey, making the federated features road, use a lot of tools that are spilled and maintained by RP. So we don't have to worry about patching and making sure there's not color right.
+
+[23:37] One of the way mess for operational metadata so we have worked with them to enrich each and every feature when they are ingesting it has enough top stream as a database. Come to the middle slash transformer treaty and deployment. Luckily database is sitting on AWS in our infrastructure.
+
+[23:55] So we are probably using our database ecosystem to train our traditional model or foundational model transformer that you can also use in six week or a paper model. However, as an engineering R we want to make sure scanning employment can happen one model. So we may no brainer scarce we do.
+
+[24:17] However, as a part of an model training, as we are identified that we training and beginning, we explained normally one of the version deployment but also one in the screen and that's what we use about in house to an extended to support all this platform that we are using have this implement. Now then the next interesting piece consensus. As you can imagine, all the surfaces in the top being all the same lessons.
+
+[24:44] They are seemingly in different regions. It's becoming a staggering low if you are looking at a study in Britain. It needs to take those copy for how we get duration and make this asset happen in the in the production entire without any problem.
+
+[25:01] Now we realize we really don't we are not trying to build tools, but there is some mistake, right? And that's where we have to get into the question of building tools and making our interest a platform by introducing the on-demand global survey platform. And this the architecture decision that has made us separate that two different document certificate ones.
+
+[25:23] One is for feature, for precision making or offline technical inference, and another is the real technical inference. The primary reason is that when we are doing a we are inferring from a previously inferred patch in the model or feature, we have only one lookup. When you're doing a real-time inference, the payload can be heterogeneous, right?
+
+[25:47] Because one model can have high feature, another model can have more features. And those real-technical inference requires uh fast party negative.

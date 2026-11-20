@@ -1,0 +1,49 @@
+Meeting Nov 19, 2026 at 3:26 PM
+Duration: 7:21
+
+Me:
+[0:00] Database, this is a project that's actively in flight with one of our large retail customers, but they had originally scoped up this effort. I forget the total number of tables unfortunately that they had them move over, but they had around like three years of effort sized out. We're moving eight to twelve X faster here with them.
+
+[0:14] And so again I think just starting to think through where might we be stuck in your data migrations today what is giving you the biggest hassle and where could an infinite army of devs representing this elastic engineering capacity to take elevated work, accelerate your time value. So one of the things that like I talked about earlier is like what does this actually allow for y'all like as our customers move over to database how does it help
+
+[0:49] like what what what does it actually make sure that like you can actually go and do to add value to the business, right? And this is when you start to unlock a lot more of the capabilities that you may already pay for with the neighbor's copy. Right.
+
+[1:06] The idea that you can now set up Genie in a much faster banner on top of data that is now in unique capital. Like there are one of the people that I work with today that are still on high-winders. Like they have bought Dataverse, they are using it for uh a lot of the capabilities that it once had, that just haven't had the capacity to move over to all of the new product offers that Databurks has
+
+[1:30] been. And so like in doing that, it unlocks a lot more of the AI, like business intelligence kind of reportflows, like as you move towards uh data applications and late basing the operational layer as well, like there is a lot more that our data teams can do to add value to the business once this has been unlocked. So the the main thesis behind this is like practitioners are really keeping the stuff that they are asked to
+
+[2:02] do today. Like how do we create relevant data products instead of going in babysitting my status quo? Right?
+
+[2:12] Like that unlock is the thing that we really wanted to talk about today and like what that can actually bring the tape. Yeah, I think it's a really interesting point because today at our group, we had many folks come up and chat with us which was very you know great to to to hear kind of the stories and the use cases that people are building on database and I think one pervasive theme has been this exact
+
+[2:32] point of data practitioners are being asked what can you do what they're being asked to build applications, to build agents, and to start owning more of the over in AI data platform. And so being able to start focusing upon much more of those strategic opportunities and the strategic values is a very important th Cool. With that, I think we have 10 ish minutes.
+
+[2:56] Um who wants to go to the website or sure? I guess but before we may maybe go to any kind of Q<unk>A um I just would love to kind of leave everyone with this kind of question and this thought of what would you be able to build in databricks if you add an unlimited number of deadlines at your disposal. So for those of you on this current committee, thank you very much for your time.
+
+[3:24] Really appreciate you all coming out.
+
+[3:38] Uh so does it data is only for the database or similar kindergarten code on the So the question I believe was does everyone work on data versus work across other RC technologies? Yeah, great question. Devon is a general purpose software engineer that we provide and out of the box is customizable for figurable for whatever your technology is.
+
+[4:03] We are diagnostic that out for the model layer here it wants to get the technology stack layer for what we're going to build on four use cases that we have or anything that's not engineering space migration work around engineering work for path development uh machine learning are they all the same fun eight They can probably as well.
+
+[4:29] Yes.
+
+[4:33] Great presentation. Thank you very much. I do have some questions about the deep wiki functionality.
+
+[4:40] So for example, in the existing warehouse there are four tables, but it turns out that 50% of the reports joint results for those tables. How does DeepWiki kind of figure that out and then will it recommend hey maybe you should organize it this way? Yeah, that's a great question.
+
+[5:01] I can take the first part of that. So deep looking is really about living documentation of the existing system. But one of the benefits is the dev actually starts to drive the system itself to identify those areas and like part of the thing is then using Debian to actually start a design process.
+
+[5:20] And so when we're talking about like on like unlocking your data practitioners to tackle higher level tasks. It's things like design that we are still in the room for and then handing those decisions off to Dem to go and fix engine target state. So deep Woodwind by itself is not going to mainly like uh like take a look and uh like do the forward training as well, like the designs and stuff like that.
+
+[5:49] It's more about like documenting the existing state that we are in whenever we're looking at uh the the information that was given. Is that right?
+
+[6:03] I really want to get to that current state faster. Yes. And so the deep point will be the kind of low level representation of the current state.
+
+[6:17] in order to get to the definition of the current state, we are trying to read the data model for what makes more sense for our tables and what we have in our downfall using the current state. And so that will just be basically iterated with that in a feature called Ask DevM, which is this way that we can start to probe that wiki for all the context that it has to start go up to this function
+
+[6:37] plan cycle. From there, we can then take that plan, create one sort of back, and then write that on to gear tickets, I think, the main structure sort of a virtual plan to microflow. So there's like paper, which we didn't want to get right where removing driving the intent, and it would boil everything out.
+
+[6:56] There's two things that you can't really do this. It is intentionally that we need these things buy, and it is the accountability that you have for the systems that they're delivering. And those two things are very crucial importance in ensuring that agents deliver successful
+
+[7:19] Uh
